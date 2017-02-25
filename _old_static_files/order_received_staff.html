@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Orders | E-Commerce</title>
+
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- navigation -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+
+        <!-- logo and hamburger menu button -->
+        <div class="navbar-header">
+            <!-- hamburger menu button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="index.html"><img src="../images/logo.jpg"></a>
+        </div>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="products.html">Products</a>
+                </li>
+                <li><a></a></li>
+                <li><a></a></li>
+                <li><a></a></li>
+
+                <li>
+                    <a href="manage_products_staff.html">Products management</a>
+                </li>
+
+                <li class="active">
+                    <a href="order_received_staff.htmlr">Orders</a>
+                </li>
+                <li>
+                    <a href="logout.html">Logout</a>
+                </li>
+            </ul>
+
+            <!-- search form -->
+            <form class="navbar-form navbar-right" role="search">
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+
+
+        </div>  <!-- end - navbar links -->
+    </div>
+</nav> <!-- end - navigation -->
+
+
+<!-- main content -->
+<div class="container">
+
+
+    <div class="row page-intro">
+        <div class="col-lg-12  ">
+            <h2>Orders Received</h2>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+        <section id="cart_items">
+            <div class="container">
+
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr class="cart_menu">
+                            <td class="date">Date</td>
+                            <td class="description">Price</td>
+                            <td class="dispatch">User</td>
+                            <td class="user">Detail</td>
+                            <td class="user">Status</td>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>10/11/2016</td>
+                            <td>£50.00</td>
+                            <td>example.order@hotmail.com</td>
+                            <td><a href="order_detail_staff.html" class="btn btn-info">Detail</a></td>
+                            <td>Dispatched</td>
+                        </tr>
+                        <tr>
+                            <td>10/11/2016</td>
+                            <td>£90.00</td>
+                            <td>example1.order@hotmail.com</td>
+                            <td><a href="order_detail_staff.html" class="btn btn-info">Detail</a></td>
+                            <td>Canceled</td>
+                        </tr>
+                        <tr>
+                            <td>11/11/2016</td>
+                            <td>£520.00</td>
+                            <td>example3.order@hotmail.com</td>
+                            <td><a href="order_detail_staff.html" class="btn btn-info">Detail</a></td>
+                            <td><strong>Processing</strong></td>
+                        </tr>
+                        <tr>
+                            <td>12/11/2016</td>
+                            <td>£150.00</td>
+                            <td>example5.order@hotmail.com</td>
+                            <td><a href="order_detail.html" class="btn btn-info">Detail</a></td>
+                            <td><strong>Processing</strong></td>
+                        </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section> <!--/#cart_items-->
+
+
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <div class="footer-blurb"></div>
+
+        <div class="small-print">
+            <div class="container">
+                <p><a href="tos.html">Terms &amp; Conditions</a> | <a href="privacy.html">Privacy Policy</a> | <a href="contact.html">Contact</a></p>
+                <p>Copyright &copy; MDX 2017 </p>
+            </div>
+        </div>
+    </footer>
+</div> <!-- end - main content -->
+
+<!-- JavaScript links -->
+<script src="../js/jquery-1.11.3.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/ie10-viewport-bug-workaround.js"></script>
+
+</body>
+</html>
