@@ -1,5 +1,8 @@
 <?php
-
+// session start
+session_start();
+require "config.php";
+require("libraries/mongodb/src/functions.php");
 function autoloadFunkce($trida)
 {
     $namespace = explode("\\", $trida);
@@ -8,6 +11,7 @@ function autoloadFunkce($trida)
         unset($namespace[0]);
         $path = implode("/", $namespace);
         require("libraries/mongodb/src/" . $path . ".php");
+        return;
     }
     $namespaces = array("Controller", "Model", "View");
     if (in_array($namespace[0], $namespaces)) {
@@ -18,6 +22,9 @@ function autoloadFunkce($trida)
 
 // Registrace callbacku (Pod starým PHP 5.2 je nutné nahradit fcí __autoload())
 spl_autoload_register("autoloadFunkce");
+
+// check if in db there is at least one staff user
+new \Model\DefaultDB();
 
 
 /*

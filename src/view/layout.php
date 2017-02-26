@@ -67,6 +67,10 @@
 <div class="container">
 
     <?php
+        // render success and error messages
+        $this->renderMessages();
+
+        // render content
         $this->controller->renderView();
     ?>
 

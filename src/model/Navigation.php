@@ -51,12 +51,11 @@ class Navigation {
 
         // active item
         $navigation["active"] = "";
-        foreach (array_merge($this->items_common, $this->items_custom) as $item) {
+        foreach (array_merge($navigation["common"], $navigation["custom"]) as $item) {
             if ($item[0] == "/$section/" || $item[0] == $section) {
                 $navigation["active"] = $item[0];
             }
         }
-       // echo "$section active: ".$navigation["active"];
         return $navigation;
     }
 }

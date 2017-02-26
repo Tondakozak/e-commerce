@@ -88,12 +88,20 @@ class Main extends Controller {
 
         // set header for this template
         $this->header = $this->controller->header;
+        // add title appendix
+        if ($this->header["title"] != PAGE_NAME) {
+            $this->header["title"] .= " | ".PAGE_NAME;
+        }
+
+
 
         // set navigation
         $nav = new Navigation();
         $nav_section = ($this->getUrlSection()=="home")?"/":$this->getUrlSection();
         $nav_section = ($nav_section == "page" && $this->getUrlParameter("about"))?"page/about":$nav_section;
         $this->navigation = $nav->generateNavigation($nav_section);
+
+        // set layout view
         $this->view = "layout";
     }
 }

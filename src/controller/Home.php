@@ -12,6 +12,6 @@ namespace Controller;
 class Home extends Controller {
 
     public function execute() {
-        $this->header["title"] = "e-commerce";
+        $this->header["title"] = PAGE_NAME;
     }
 }
