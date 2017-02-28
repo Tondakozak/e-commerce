@@ -11,7 +11,7 @@ namespace Controller;
 
 class Error extends Controller {
     public function execute() {
-        echo "Chyba";
+        echo "Error";
         var_dump($this->url);
     }
 }

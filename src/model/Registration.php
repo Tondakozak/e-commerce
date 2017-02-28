@@ -10,6 +10,11 @@ namespace Model;
 
 
 class Registration {
+
+    /**
+     * Check if the form is filled in correctly, ie. all fields are filled, the passwords match and the email is available
+     * @return array
+     */
     public function checkForm() {
         $data = array();
         $data["error"] = false;
@@ -44,6 +49,7 @@ class Registration {
             $data["data"]["password-again"] = trim($_POST["register-password-again"]);
         }
 
+
         // check if the passwords match
         if ($data["data"]["password"] != $data["data"]["password-again"]) {
             $_SESSION["message"]["error"][] = "The passwords don't match.";
@@ -63,6 +69,11 @@ class Registration {
         return $data;
     }
 
+    /**
+     * insert new user to the db
+     * @param $data
+     * @return bool
+     */
     public function register($data) {
         $user_data = [
             "category" => "staff",
@@ -84,7 +95,12 @@ class Registration {
 
     }
 
-    protected function isEmailAvailable($email) {
+    /**
+     * check if the email is not in db yet
+     * @param $email
+     * @return bool
+     */
+    private function isEmailAvailable($email) {
         $db = new \Model\DB();
         $collection = $db->selectCollection("users");
 

@@ -83,6 +83,9 @@ class Main extends Controller {
             $this->redirect("page/error/404/");
         }
 
+        //
+        // add url to the controller
+        $this->controller->url = $this->url;
         // invoke section controller action
         $this->controller->execute();
 

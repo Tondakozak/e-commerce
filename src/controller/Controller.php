@@ -30,6 +30,9 @@ abstract class Controller {
         }
     }
 
+    /**
+     * Render controllers view
+     */
     public function renderView() {
         if ($this->view) {
             extract($this->data, EXTR_PREFIX_ALL, "");
@@ -38,6 +41,9 @@ abstract class Controller {
         }
     }
 
+    /**
+     * Render all error and success messages
+     */
     public function renderMessages() {
         require "src/view/messages.php";
 
@@ -63,6 +69,11 @@ abstract class Controller {
         unset($_SESSION["message"]);
     }
 
+    /**
+     * Protect output data against XSS
+     * @param $data
+     * @return array|string
+     */
     public function protectOutput($data) {
         if(!is_array($data)) {
             return htmlspecialchars($data, ENT_QUOTES);
@@ -76,6 +87,10 @@ abstract class Controller {
         }
     }
 
+    /**
+     * abstract function, do controllers job
+     * @return mixed
+     */
     abstract function execute();
 }
 

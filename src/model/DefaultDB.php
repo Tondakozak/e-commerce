@@ -9,6 +9,11 @@
 namespace Model;
 
 
+/**
+ * Check if in DB is at least one staff user, if not, add the default one
+ * Class DefaultDB
+ * @package Model
+ */
 class DefaultDB {
     public function __construct() {
         // connect

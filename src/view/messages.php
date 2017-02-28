@@ -7,9 +7,9 @@
  */
 
 function view_error($msg) {
-    echo "<div class='msg-error'>".$msg."</div>";
+    echo "<div class='alert alert-danger'>".$msg."</div>";
 }
 
 function view_success($msg) {
-    echo "<div class='msg-success'>".$msg."</div>";
+    echo "<div class='alert alert-success'>".$msg."</div>";
 }

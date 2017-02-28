@@ -32,6 +32,13 @@ class Navigation {
             ["/cart/", "Cart"]
         ]
     ];
+
+    /**
+     * Return list of items for navigation
+     *
+     * @param $section
+     * @return array
+     */
     public function generateNavigation($section) {
         $navigation = [];
 

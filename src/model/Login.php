@@ -10,6 +10,9 @@ namespace Model;
 
 
 class Login {
+    /** Check if all form fields are filled in
+     * @return array
+     */
     public function checkForm() {
         $data = array();
         $data["error"] = false;
@@ -34,6 +37,13 @@ class Login {
         return $data;
     }
 
+    /**
+     * Check user details and log in
+     *
+     * @param $email
+     * @param $password
+     * @return bool
+     */
     public function login($email, $password) {
         $db_data = [
             "email" => $email
@@ -41,7 +51,8 @@ class Login {
         $db = new \Model\DB();
         $collection = $db->selectCollection("users");
         $user_data = $collection->findOne($db_data);
-        var_dump($user_data);
+
+        // if there is a user with given email.
         if($user_data) {
             if (password_verify($password, $user_data["password"])) {
                 // password is correct

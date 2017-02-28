@@ -41,7 +41,7 @@ printf("Inserted %d document(s)\n", $insertOneResult->getInsertedCount());
 var_dump($insertOneResult->getInsertedId());
 */
 
-var_dump(!" ");
+var_dump(!"  ");
 
 
 
