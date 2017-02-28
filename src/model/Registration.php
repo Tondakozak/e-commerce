@@ -27,7 +27,7 @@ class Registration {
             $data["error"] = true;
             $data["data"]["email"] = "";
         } else {
-            $data["data"]["email"] = trim($_POST["register-email"]);
+            $data["data"]["email"] = strtolower(trim($_POST["register-email"]));
         }
         if (empty(trim($_POST["register-password"]))) {
             $_SESSION["message"]["error"][] = "Please fill in your password.";

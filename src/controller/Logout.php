@@ -12,5 +12,8 @@ namespace Controller;
 class Logout extends Controller {
     function execute() {
         $this->header["title"] = "Logout";
+        $logout = new \Model\Logout();
+        $logout->logout();
+        $this->redirect("");
     }
 }
