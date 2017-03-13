@@ -1,5 +1,8 @@
 <?php
 function generate_header($title){
+    $active = str_replace(" ", "_", strtolower($title));
+
+
 	?>
 	
 	<!DOCTYPE html>
@@ -37,30 +40,7 @@ function generate_header($title){
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.php">About</a>
-                    </li>
-
-                    <li>
-                        <a href="products.php">Products</a>
-                    </li>
-                    <li><a></a></li>
-                    <li><a></a></li>
-                    <li><a></a></li>
-
-                    <li>
-                        <a href="registration.php">Registration</a>
-                    </li>
-
-                    <li>
-                        <a href="login.php">Login</a>
-                    </li>
-                    <li>
-                        <a href="cart.php">Cart (2)</a>
-                    </li>
+                    <?php show_navigation($active); ?>
                 </ul>
 
                 <!-- search form -->
@@ -138,6 +118,62 @@ function show_messages() {
         unset($_SESSION["message"]);        
     }
 
+}
+
+function show_navigation($active) {
+    echo '
+    <li'.(($active == "home")?" class='active'":"").'>
+        <a href="/">Home</a>
+    </li>
+    <li'.(($active == "about")?" class='active'":"").'>
+        <a href="about.php">About</a>
+    </li>
+
+    <li'.(($active == "products")?" class='active'":"").'>
+        <a href="products.php">Products</a>
+    </li>
+    <li><a></a></li>
+    <li><a></a></li>
+    <li><a></a></li>';
+
+    if (!is_logged()) {
+        echo ' <li'.(($active == "registration")?" class='active'":"").'>
+                    <a href="registration.php">Registration</a>
+                </li>
+            
+                <li'.(($active == "login")?" class='active'":"").'>
+                    <a href="login.php">Login</a>
+                </li>
+                <li'.(($active == "cart")?" class='active'":"").'>
+                    <a href="cart.php">Cart (2)</a>
+                </li>';
+    }
+
+    if (is_customer()) {
+        echo ' <li>
+                    <a href="logout.php">Logout</a>
+                </li>
+            
+                <li'.(($active == "account")?" class='active'":"").'>
+                    <a href="account.php">My Account</a>
+                </li>
+                <li'.(($active == "cart")?" class='active'":"").'>
+                    <a href="cart.php">Cart (2)</a>
+                </li>';
+    }
+
+    if (is_staff()) {
+        echo ' <li>
+                    <a href="logout.php">Logout</a>
+                </li>
+            
+                <li'.(($active == "manage_products")?" class='active'":"").'>
+                    <a href="manage_products.php">Manage Products</a>
+                </li>
+                <li'.(($active == "manage_orders")?" class='active'":"").'>
+                    <a href="manage_orders.php">Manage Orders</a>
+                </li>';
+    }
 }
 ?>
 	
