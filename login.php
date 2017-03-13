@@ -1,6 +1,8 @@
 <?php
-//require
+//require common function
 require "common.php";
+
+// if the form was sent
 if (isset($_POST["email"])) {
 	//connect to database
 	$collection = (new MongoDB\Client)->ecomerce->users;
@@ -8,12 +10,12 @@ if (isset($_POST["email"])) {
 	//Convert to PHP array
 	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-
 	$dataArray = [ 
 	   "email" => strtolower(trim($email)),
 	   "password" => trim($password),
 	   ];
 
+	// check the inputs
 	$error = false;
 	if (empty($dataArray["email"])) {
 		$error = true;
@@ -24,26 +26,34 @@ if (isset($_POST["email"])) {
 		$error = true;
 		$_SESSION["message"]["error"][] = "Password Required";
 	}
-	  	
-	if (!$error) {
+
+
+	if (!$error) { // if the fields are filled
 		$document = $collection->findOne(['email' => $dataArray['email']]);
-		if ($document == null) {
+		if ($document == null) { // if the email doesn't exist
 			$_SESSION["message"]["error"][] = "Email Doesn't Exist";
 		
 		} else{
+		    // if the email exists
+
+            // check passsword
 			if (password_verify ($dataArray["password"], $document ["password"]) ) {
+
+			        // log in
 					$_SESSION ["user"]["id"] = $document ["_id"];
-					$_SESSION ["user"] ["id"] = $document ["role"]; 
+					$_SESSION ["user"] ["id"] = $document ["role"];
+
 					$_SESSION["message"]["success"][] = "You Are Logged In";
+
+					// redirecting to home page
 					header("Location: /");
 					exit();
 			
 
 			}
-			else{
-				$_SESSION["message"]["error"][] = "Wrong Password";
-
-			
+			else {
+			    // the password is wrong
+				$_SESSION["message"]["error"][] = "Wrong Password";	
 			
 			}
 			
@@ -55,14 +65,12 @@ if (isset($_POST["email"])) {
 }
 
 
-
-
-
 generate_header("login");
 
 
 
 include'src/view/login_form.php';
-login_form("login");
+login_form();
+
 generate_footer();
 

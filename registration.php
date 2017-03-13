@@ -1,8 +1,8 @@
 <?php
-//require
+//require common functions
 require "common.php";
 
-
+// if the registration form was sent
 if (isset($_POST["email"])) {
 	//connect to database
 	$collection = (new MongoDB\Client)->ecomerce->users;
@@ -12,7 +12,6 @@ if (isset($_POST["email"])) {
 	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 	$passwordagain = filter_input(INPUT_POST, 'password_again', FILTER_SANITIZE_STRING);
-
 	$dataArray = [ 
 	   "name" => trim($username),
 	   "email" => strtolower(trim($email)),
@@ -20,6 +19,7 @@ if (isset($_POST["email"])) {
 	   "passwordagain" => trim($passwordagain),
 	   ];
 
+	// check if the inputs are filled in
 	$error = false;
 	if (empty($dataArray["name"])) {
 		$error = true;
@@ -31,7 +31,8 @@ if (isset($_POST["email"])) {
 		$_SESSION["message"]["error"][] = "Email Required";
 	}
 	else {
-	$document = $collection->findOne(['email' => $dataArray['email']]);
+	    // check if the email doesn't exists in DB
+	    $document = $collection->findOne(['email' => $dataArray['email']]);
 		if ($document != null) {
 			$error = true;
 			$_SESSION["message"]["error"][] = "Email Already in Our Database, Choose Another Email Address";
@@ -50,11 +51,14 @@ if (isset($_POST["email"])) {
 		$error = true;
 		$_SESSION["message"]["error"][] = "Password Does Not Match";
 	}
-	
+
+	// if the input is correct
 	if (!$error) {
+	    // hash the password
 		$dataArray['password'] = password_hash($dataArray['password'], 1);
-		unset($dataArray ['passwordagain']);
-		$dataArray ['role'] = "customer";
+		unset($dataArray ['passwordagain']); // delete password again
+		$dataArray ['role'] = "customer"; // add role
+
 		// Add new users to the database
 		$returnVal = $collection->insertOne($dataArray); 
 
@@ -65,9 +69,12 @@ if (isset($_POST["email"])) {
 
 }
 
-generate_header("registration");
+generate_header("Registration");
 
+// show form
 include'src/view/registration_form.php';
-registration_form("registration");
+registration_form();
+
+
 generate_footer();
 

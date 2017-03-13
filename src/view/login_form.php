@@ -1,7 +1,7 @@
 <?php
 
 
-function login_form($title){
+function login_form(){
 	?>
 	
 	<div class="row page-intro">

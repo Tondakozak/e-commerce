@@ -1,5 +1,5 @@
 <?php
-function registration_form($title){
+function registration_form(){
     ?>
 
     <div class="row page-intro">
