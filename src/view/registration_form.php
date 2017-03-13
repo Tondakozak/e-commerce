@@ -1,9 +1,7 @@
 <?php
 function registration_form($title){
+    ?>
 
-
-?>
- 
     <div class="row page-intro">
         <div class="col-lg-12  ">
             <h1>Registration</h1>

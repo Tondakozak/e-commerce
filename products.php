@@ -3,7 +3,7 @@
 require "common.php";
 
 
-generate_header("Home"); ?>
+generate_header("Products"); ?>
 
 
 <!-- main content -->
@@ -18,7 +18,6 @@ generate_header("Home"); ?>
 
 
     <div class="row">
-
         <!-- side bar -->
         <div class="col-sm-3">
             <div class="left-sidebar">
@@ -172,129 +171,28 @@ generate_header("Home"); ?>
             </div>
         </div> <!-- end - side bar -->
 
+	<?php
 
+	//connect to database
+	$products = (new MongoDB\Client)->ecomerce->products->find();
+
+	foreach ($products as $cust) {
+?>
         <!-- list of products -->
-        <div class="col-md-8">
-            <article class="col-md-4 article-intro">
+        <div class="col-md-3">
+            <article class="article-intro">
                 <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
+                    <img class="img-responsive img-rounded" src="../images/product-images/<?php echo $cust["photos"][0]; ?>" alt="">
                 </a>
                 <h3>
-                    <a href="product_details.html">Timberland</a>
+					<a href="product_details.html"><?php echo $cust['brand']; ?></a>
                 </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
+                    <p><?php echo $cust['name']; ?></p>
+					<p>£<?php echo $cust['price']; ?></p>
                 <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-            </article>
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-            </article>
-
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
-            </article>
-            <article class="col-md-4 article-intro">
-                <a href="product_details.html">
-                    <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-                </a>
-                <h3>
-                    <a href="product_details.html">Timberland</a>
-                </h3>
-                <p>The City Blazer</p>
-                <p>£100</p>
-
-                <input name="Add" value="Add to Cart" type="button" class="btn btn-default">
-
             </article>
         </div> <!-- end - list of products -->
-
+<?php } ?>
     </div>
 
 

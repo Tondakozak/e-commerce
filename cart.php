@@ -3,11 +3,9 @@
 require "common.php";
 
 
-generate_header("Home"); ?>
+generate_header("Cart"); ?>
 
 
-<!-- main content -->
-<div class="container">
 
 
     <div class="row page-intro">
@@ -155,4 +153,3 @@ generate_header("Home"); ?>
 <?php
 
 generate_footer(); ?>
-</div> <!-- end - main content -->

@@ -83,7 +83,10 @@ function generate_header($title){
     <div class="container">
 
 <?php
+    show_messages();
 
+
+}
 function generate_slider(){
 	?>
 	
@@ -138,90 +141,47 @@ function generate_slider(){
 
 }
 
-
-
-
-	
-}
 function generate_feature(){
 	?>
 	
 	
 <div class="container">
-
-
     <div class="row page-intro">
         <div class="col-lg-12">
             <h1>Featured Products</h1>
         </div>
     </div>
+	
+
 
 
     <div class="row">
-        <article class="col-md-4 article-intro">
-            <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-            </a>
-            <h3>
-                <a href="product_details.html">Timberland</a>
-            </h3>
-            <p>The City Blazer</p>
-        </article>
-        <article class="col-md-4 article-intro">
-            <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-            </a>
-            <h3>
-                <a href="product_details.html">Timberland</a>
-            </h3>
-            <p>The City Blazer</p>
-        </article>
+	<?php
 
-        <article class="col-md-4 article-intro">
-            <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-            </a>
-            <h3>
-                <a href="product_details.html">Timberland</a>
-            </h3>
-            <p>The City Blazer</p>
-        </article>
+	//connect to database
+	$products = (new MongoDB\Client)->ecomerce->products->find(); 
+	// .limit(6) not working
 
-        <article class="col-md-4 article-intro">
-            <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-            </a>
-            <h3>
-                <a href="product_details.html">Timberland</a>
-            </h3>
-            <p>The City Blazer</p>
-        </article>
+	foreach ($products as $cust) {	
+?>
 
-        <article class="col-md-4 article-intro">
+	<div class="col-md-4">
+        <article class="article-intro">
             <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
+                <img class="img-responsive img-rounded" src="'../images/product-images/<?php echo $cust['name'] ?>" alt="">
             </a>
             <h3>
-                <a href="product_details.html">Timberland</a>
+                <a href="product_details.html"><?php echo $cust['brand']; ?></a>
             </h3>
-            <p>The City Blazer</p>
+            <p><?php echo $cust['name']; ?></p>
         </article>
+		</div>
+	<?php } ?>
 
-        <article class="col-md-4 article-intro">
-            <a href="product_details.html">
-                <img class="img-responsive img-rounded" src="../images/product-images/jd.jpg" alt="">
-            </a>
-            <h3>
-                <a href="product_details.html">Timberland</a>
-            </h3>
-            <p>The City Blazer</p>
-        </article>
     </div>
 <?php
 
 }
-
-
 
 function generate_footer(){
 	?>
@@ -234,7 +194,7 @@ function generate_footer(){
         <div class="small-print">
             <div class="container">
                 <p><a href="tos.php">Terms &amp; Conditions</a> | <a href="privacy.php">Privacy Policy</a> | <a href="contact.php">Contact</a></p>
-                <sp>Copyright &copy; MDX 2017 </p>
+                <p>Copyright &copy; MDX 2017 </p>
             </div>
         </div>
     </footer>

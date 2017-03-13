@@ -3,7 +3,7 @@
 require "common.php";
 
 
-if (isset($_POST["email"])) { echo "Zpracovávám";
+if (isset($_POST["email"])) {
 	//connect to database
 	$collection = (new MongoDB\Client)->ecomerce->users;
 
@@ -51,7 +51,7 @@ if (isset($_POST["email"])) { echo "Zpracovávám";
 		$_SESSION["message"]["error"][] = "Password Does Not Match";
 	}
 	
-	if (!$error) { echo "Zpracovávám znova";
+	if (!$error) {
 		$dataArray['password'] = password_hash($dataArray['password'], 1);
 		unset($dataArray ['passwordagain']);
 		

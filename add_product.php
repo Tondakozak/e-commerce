@@ -58,7 +58,7 @@ if (isset($_POST["submit"])) {
 	   "brand" => $brand,
 	   "price" => $price,
 	   'quantity' => $quantity,
-	   'image' => $_FILES
+	   'photos' => [$uploadFileName]
 	   ];
 
 
@@ -69,10 +69,10 @@ if (isset($_POST["submit"])) {
 
 }
 
-generate_header("registration");
+generate_header("Registration");
 
 include'src/view/add_product.php';
-products_form("Add Products");
+products_form();
 generate_footer();
 
 

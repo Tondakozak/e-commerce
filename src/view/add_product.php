@@ -1,12 +1,8 @@
 <?php
-function products_form($title){
+function products_form(){
 
 
 ?>
-
-<!-- main content -->
-<div class="container">
-
 
     <div class="row page-intro">
         <div class="col-lg-12  ">
