@@ -54,7 +54,7 @@ if (isset($_POST["email"])) {
 	if (!$error) {
 		$dataArray['password'] = password_hash($dataArray['password'], 1);
 		unset($dataArray ['passwordagain']);
-		
+		$dataArray ['role'] = "customer";
 		// Add new users to the database
 		$returnVal = $collection->insertOne($dataArray); 
 

@@ -30,10 +30,22 @@ if (isset($_POST["email"])) {
 		if ($document == null) {
 			$_SESSION["message"]["error"][] = "Email Doesn't Exist";
 		
-		}
-		else{
-			echo $document ['password'];
+		} else{
+			if (password_verify ($dataArray["password"], $document ["password"]) ) {
+					$_SESSION ["user"]["id"] = $document ["_id"];
+					$_SESSION ["user"] ["id"] = $document ["role"]; 
+					$_SESSION["message"]["success"][] = "You Are Logged In";
+					header("Location: /");
+					exit();
 			
+
+			}
+			else{
+				$_SESSION["message"]["error"][] = "Wrong Password";
+
+			
+			
+			}
 			
 			
 		}
