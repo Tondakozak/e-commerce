@@ -2,6 +2,9 @@
 //require common functions
 require "common.php";
 
+// redirect if is logged
+page_for_guest();
+
 // if the registration form was sent
 if (isset($_POST["email"])) {
 	//connect to database

@@ -2,6 +2,9 @@
 //require common function
 require "common.php";
 
+// redirect if is logged
+page_for_guest();
+
 // if the form was sent
 if (isset($_POST["email"])) {
 	//connect to database
@@ -41,7 +44,7 @@ if (isset($_POST["email"])) {
 
 			        // log in
 					$_SESSION ["user"]["id"] = $document ["_id"];
-					$_SESSION ["user"] ["id"] = $document ["role"];
+					$_SESSION ["user"]["role"] = $document ["role"];
 
 					set_success("You Are Logged In");
 
