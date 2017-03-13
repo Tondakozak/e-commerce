@@ -131,7 +131,7 @@ function show_messages() {
         // show all error messages
 		if (isset($_SESSION["message"]["error"])) {
 			foreach ($_SESSION["message"]["error"] as $msg) {
-				echo "<div class='alert alert-error'>".$msg."</div>";
+				echo "<div class='alert alert-danger'>".$msg."</div>";
 			}
 		}
         // delete showed messages

@@ -24,14 +24,14 @@ if (isset($_POST["email"])) {
 	
 	 if (empty($dataArray["password"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Password Required";
+		set_error("Password Required");
 	}
 
 
 	if (!$error) { // if the fields are filled
 		$document = $collection->findOne(['email' => $dataArray['email']]);
 		if ($document == null) { // if the email doesn't exist
-			$_SESSION["message"]["error"][] = "Email Doesn't Exist";
+			set_error("Email Doesn't Exist");
 		
 		} else{
 		    // if the email exists
@@ -43,7 +43,7 @@ if (isset($_POST["email"])) {
 					$_SESSION ["user"]["id"] = $document ["_id"];
 					$_SESSION ["user"] ["id"] = $document ["role"];
 
-					$_SESSION["message"]["success"][] = "You Are Logged In";
+					set_success("You Are Logged In");
 
 					// redirecting to home page
 					header("Location: /");
@@ -53,7 +53,7 @@ if (isset($_POST["email"])) {
 			}
 			else {
 			    // the password is wrong
-				$_SESSION["message"]["error"][] = "Wrong Password";	
+				set_error("Wrong Password");
 			
 			}
 			

@@ -23,33 +23,33 @@ if (isset($_POST["email"])) {
 	$error = false;
 	if (empty($dataArray["name"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Name Required";
+		set_error("Name Required");
 	}
 	   
 	if (empty($dataArray["email"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Email Required";
+        set_error("Email Required");
 	}
 	else {
 	    // check if the email doesn't exists in DB
 	    $document = $collection->findOne(['email' => $dataArray['email']]);
 		if ($document != null) {
 			$error = true;
-			$_SESSION["message"]["error"][] = "Email Already in Our Database, Choose Another Email Address";
+            set_error("Email Already in Our Database, Choose Another Email Address");
 		}
 	}
 	 if (empty($dataArray["password"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Password Required";
+		set_error("Password Required");
 	}
 	  
 	 if (empty($dataArray["passwordagain"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Password Again Required";
+         set_error("Password Again Required");
 	}
 	if (($dataArray["passwordagain"] != $dataArray["password"])) {
 		$error = true;
-		$_SESSION["message"]["error"][] = "Password Does Not Match";
+        set_error("Password Does Not Match");
 	}
 
 	// if the input is correct
@@ -60,9 +60,9 @@ if (isset($_POST["email"])) {
 		$dataArray ['role'] = "customer"; // add role
 
 		// Add new users to the database
-		$returnVal = $collection->insertOne($dataArray); 
+		$returnVal = $collection->insertOne($dataArray);
 
-		$_SESSION["message"]["success"][] = "YOU are registered";
+        set_success("YOU are registered");
 
 	
 	}
