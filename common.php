@@ -140,3 +140,24 @@ function set_success($message) {
 function set_error($message) {
     $_SESSION["message"]["error"][] = $message;
 }
+
+
+
+
+/**
+ * Protect output data against XSS
+ * @param $data
+ * @return array|string
+ */
+
+function protect_output($data) {
+    if(!is_array($data)) {
+        return htmlspecialchars($data, ENT_QUOTES);
+    } else {
+        $protectString = function(&$string) {
+            $string = htmlspecialchars($string, ENT_QUOTES);
+        };
+        array_walk_recursive($data, $protectString);
+        return $data;
+    }
+}

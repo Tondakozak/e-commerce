@@ -215,6 +215,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   margin-right: 20px;
   margin-top: 0px;
+  min-width:5ex;
 }
 .product-information span input {
   border: 1px solid #DEDEDC;
@@ -225,7 +226,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 33px;
   outline: medium none;
   text-align: center;
-  width: 50px;
+  width: 6ex;
 }
 
 .product-information span label {

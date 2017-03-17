@@ -175,8 +175,24 @@ function show_navigation($active) {
                 </li>';
     }
 }
-?>
-	
+
+
+/**
+ * Generate HTML code for page title in <h1>
+ * @param $title
+ */
+function generate_page_title($title) {
+    echo <<<END
+
+        <div class="row page-intro">
+            <div class="col-lg-12  ">
+                <h1>$title</h1>
+            </div>
+        </div>
+
+END;
+}
+
 	
 
 
