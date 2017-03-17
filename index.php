@@ -1,7 +1,7 @@
 <?php
 //require
 require "common.php";
-include "src/view/home.php";
+include "src/templates/home.php";
 
 
 generate_header("Home");

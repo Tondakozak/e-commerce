@@ -71,7 +71,7 @@ if (isset($_POST["submit"])) {
 
 generate_header("Registration");
 
-include'src/view/add_product.php';
+include 'src/templates/add_product.php';
 products_form();
 generate_footer();
 

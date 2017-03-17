@@ -72,7 +72,7 @@ generate_header("login");
 
 
 
-include'src/view/login_form.php';
+include 'src/templates/login_form.php';
 login_form();
 
 generate_footer();

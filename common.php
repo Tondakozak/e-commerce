@@ -1,6 +1,6 @@
 <?php
 session_start();
-include'src/view/layout.php';
+include 'src/templates/layout.php';
 
 // mongoDB functions
 require("libraries/mongodb/src/functions.php");

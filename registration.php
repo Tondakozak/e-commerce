@@ -75,7 +75,7 @@ if (isset($_POST["email"])) {
 generate_header("Registration");
 
 // show form
-include'src/view/registration_form.php';
+include 'src/templates/registration_form.php';
 registration_form();
 
 
