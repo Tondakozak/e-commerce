@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'src/templates/layout.php';
+include "src/logic/database.php";
+include "src/logic/user.php";
 
 // mongoDB functions
 require("libraries/mongodb/src/functions.php");
@@ -21,6 +23,30 @@ function autoloadFunction($class) {
 spl_autoload_register("autoloadFunction");
 
 
+
+// update last visit record
+update_last_visit();
+
+// delete carts form not visited accounts
+delete_old_carts();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ****************************************************
 // *
 // * functions for users and authentication
@@ -28,26 +54,26 @@ spl_autoload_register("autoloadFunction");
 // ****************************************************
 
 /**
- * Returns id of logged user, if not logged, returns false
+ * Returns id of logged user, if not logged, returns session id
  * @return bool
  */
 function get_user_id() {
     if (isset($_SESSION["user"]["id"])) {
         return $_SESSION["user"]["id"];
     } else {
-        return false;
+        return session_id();
     }
 }
 
 /**
- * Returns role of logged user, if not logged, returns false
+ * Returns role of logged user, if not logged, returns "guest"
  * @return bool
  */
 function get_user_role() {
     if (isset($_SESSION["user"]["role"])) {
         return $_SESSION["user"]["role"];
     } else {
-        return false;
+        return "guest";
     }
 }
 
@@ -159,5 +185,16 @@ function protect_output($data) {
         };
         array_walk_recursive($data, $protectString);
         return $data;
+    }
+}
+
+/**
+ * save additional javascript to Session, it will be automaticly outputed in generate_footer() function
+ * @param $path string
+ */
+function set_script($path) {
+    // add script only if there is not yet
+    if (!isset($_SESSION["script"]) || false === array_search($path, $_SESSION["script"])) {
+        $_SESSION["script"][] = $path;
     }
 }

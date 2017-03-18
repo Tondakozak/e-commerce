@@ -90,6 +90,10 @@ function generate_footer(){
 <script src="js/jquery-1.11.3.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/cart.js"></script>
+<?php
+add_scripts();
+?>
 
 </body>
 </html>
@@ -145,7 +149,7 @@ function show_navigation($active) {
                     <a href="login.php">Login</a>
                 </li>
                 <li'.(($active == "cart")?" class='active'":"").'>
-                    <a href="cart.php">Cart (2)</a>
+                    <a href="cart.php">Cart <span id="nav-cart-items"></span></a>
                 </li>';
     }
 
@@ -158,7 +162,7 @@ function show_navigation($active) {
                     <a href="account.php">My Account</a>
                 </li>
                 <li'.(($active == "cart")?" class='active'":"").'>
-                    <a href="cart.php">Cart (2)</a>
+                    <a href="cart.php">Cart <span id="nav-cart-items"></span></a>
                 </li>';
     }
 
@@ -173,6 +177,19 @@ function show_navigation($active) {
                 <li'.(($active == "manage_orders")?" class='active'":"").'>
                     <a href="manage_orders.php">Manage Orders</a>
                 </li>';
+    }
+}
+
+
+/**
+ * Add including JavaScripts
+ */
+function add_scripts() {
+    if (isset($_SESSION["script"])) {
+        foreach ($_SESSION["script"] as $script) {
+            echo "<script src='js/$script'></script>";
+        }
+        unset($_SESSION["script"]);
     }
 }
 
