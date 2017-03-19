@@ -12,7 +12,7 @@ require "common.php";
 
 // data were sent
 if (!empty($_POST["product-id"])) {
-    $product_id = $_POST["product-id"];
+    $product_id = protect_input($_POST["product-id"]);
     $product_object_id = get_object_id($product_id);
     $product_quantity = intval($_POST["product-quantity"]);
 

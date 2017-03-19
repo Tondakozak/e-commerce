@@ -189,6 +189,22 @@ function protect_output($data) {
 }
 
 /**
+ * Protection against MongoDB injection
+ * Convert data to string and remove whitespaces form the end end beginning
+ * @param $data
+ * @return string
+ */
+function protect_input($data) {
+    return (string)trim($data);
+}
+
+
+
+
+
+
+
+/**
  * save additional javascript to Session, it will be automaticly outputed in generate_footer() function
  * @param $path string
  */
