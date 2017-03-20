@@ -49,3 +49,25 @@ function delete_old_carts() {
         );
     }
 }
+
+/**
+ * Return user Address, false if doesn't exists
+ * @param $id string|object
+ * @return array|false
+ */
+function get_user_address($id) {
+    $data = select_collection("users")->findOne(["_id" => $id]);
+    if (!$data) {
+        $return = false;
+    } else {
+        $return["name"] = (isset($data["name"]))?$data["name"]:"";
+        $return["email"] = (isset($data["email"]))?$data["email"]:"";
+        $return["tel"] = (isset($data["tel"]))?$data["tel"]:"";
+        $return["address"]["line_1"] = (isset($data["address"]["line_1"]))?$data["address"]["line_1"]:"";
+        $return["address"]["line_2"] = (isset($data["address"]["line_2"]))?$data["address"]["line_2"]:"";
+        $return["address"]["town"] = (isset($data["address"]["town"]))?$data["address"]["town"]:"";
+        $return["address"]["postcode"] = (isset($data["address"]["postcode"]))?$data["address"]["postcode"]:"";
+    }
+
+    return $return;
+}

@@ -42,3 +42,15 @@ function update_items_in_cart(num) {
     document.getElementById("nav-cart-items").innerHTML = "("+num+")";
 
 }
+
+/*
+db.users.update({
+    "_id":"32fg0n6jsd10jdhpuu6uhp4nb1"
+    },{address: {line_1: "Buxton Roand 155",
+        line_2: "Bud 155",
+        town: "Londýn",
+        postcode: "nw9 5ha"
+    },
+    name: "tonda Kozák",
+    tel: "555555555"}
+)*/
