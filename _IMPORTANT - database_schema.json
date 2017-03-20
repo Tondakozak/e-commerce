@@ -1,0 +1,96 @@
+[
+// ************  users  ****************
+{
+  "_id": ObjectId("588517047f426a9f6c2a6656"),   // or (string) session_id
+  "role": "customer", // or "guest" or "staff"
+  "name": "Tonda Kozák",
+  "password": "asfsk99fh854asdf2245sdfhaksdfas",
+  "email": "kozak@hotmail.com",
+  "address": {
+    "line_1": "9 Buxton Street",
+    "line_2": "second floor",
+    "town": "London",
+    "postcode": "NW9 5HA"
+  },
+  "tel": "07444444444",
+  "cart": [
+    {
+      "product_id": ObjectId("5405148safga486ad4ad416"),
+      "product_name": "Red boot",
+      "quantity": 2
+    },
+    {
+      "product_id": ObjectId("8786d54545fga486ad4gg422"),
+      "product_name": "Blue boot",
+      "quantity": 3
+    }
+  ],
+  "last_visit": 12345678
+},
+// Required fields:
+// _id, role, last_activity
+
+
+
+// // ************  products  ****************
+{
+  "_id": ObjectId("5405148safga486ad4ad416"),
+  "name": "Blue boot",
+  "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+  "photos": ["15.jpg", "254.jpg", "2569.jpg"],
+  "amount": 500,
+  "category":
+    [
+      "out-door",
+      "blue"
+    ],
+  "gender": "male",
+  "size": 30,
+  "price": 50
+},
+
+
+
+
+
+  // // ************  orders  ****************
+  {
+    "_id" : ObjectId("5405148safga486ad4ad416"),
+    "date" : 12345545,
+    "items" :
+    [
+      {
+        "product_id" : ObjectId("5405148safga486ad4ad416"),
+        "item_price" : 50,
+        "quantity" : 5
+      },
+      {
+        "product_id" : ObjectId("5405148safga486ad4ad416"),
+        "item_price" : 60,
+        "quantity" : 5
+      }
+    ],
+    "payment" : "cash",
+    "status" : "progressing",
+    "customer_details" :
+    {
+      "user_id" : ObjectId("5405148safga486ad4ad416"),
+      "name" : "Tonda Kozák",
+      "email" : "kozak@hotmail.com",
+      "address" :
+      {
+        "line_1" : "9 Buxton Street",
+        "line_2" : "second floor",
+        "town" : "London",
+        "postcode" : "NW9 5HA"
+      },
+      "tel" : "07444444444"
+    }
+  }
+
+
+
+
+
+
+]
