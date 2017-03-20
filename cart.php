@@ -13,6 +13,7 @@ $user_data = get_user_address(get_user_id());
 if (isset($_POST["email"])) {
     $form_data = check_cart_form($_POST);
     if ($form_data && $cart_data) {
+        save_user_details($form_data, get_user_id());
         $order_saved = save_order($form_data, $cart_data, get_user_id());
         $title = "Order Summary";
     }

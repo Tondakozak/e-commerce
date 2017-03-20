@@ -88,7 +88,7 @@ function save_order($user_data, $cart, $user_id) {
         "customer_details" => [
             "user_id" => $user_id,
             "name" => protect_input($user_data["name"]),
-            "email" => protect_input($user_data["name"]),
+            "email" => protect_input($user_data["email"]),
             "address" => [
                 "line_1" => protect_input($user_data["address1"]),
                 "line_2" => protect_input($user_data["address2"]),

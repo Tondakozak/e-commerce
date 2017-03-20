@@ -71,3 +71,27 @@ function get_user_address($id) {
 
     return $return;
 }
+
+/**
+ * Saves user data
+ * @param $data
+ * @param $user_id
+ */
+function save_user_details($data, $user_id) {
+    $query = [
+        "name" => protect_input($data["name"]),
+        "email" => protect_input($data["email"]),
+        "address" => [
+            "line_1" => protect_input($data["address1"]),
+            "line_2" => protect_input($data["address2"]),
+            "town" => protect_input($data["town"]),
+            "postcode" => protect_input($data["postcode"]),
+        ]
+    ];
+
+    // delete cart from users collection
+    select_collection("users")->updateOne(
+        ["_id" => $user_id],
+        ['$set' => $query]
+    );
+}
