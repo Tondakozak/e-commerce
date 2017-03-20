@@ -57,6 +57,7 @@
   {
     "_id" : ObjectId("5405148safga486ad4ad416"),
     "date" : 12345545,
+    "arriving" : 12365,
     "items" :
     [
       {

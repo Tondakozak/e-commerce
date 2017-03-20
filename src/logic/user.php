@@ -81,6 +81,7 @@ function save_user_details($data, $user_id) {
     $query = [
         "name" => protect_input($data["name"]),
         "email" => protect_input($data["email"]),
+        "tel" => protect_input($data["tel"]),
         "address" => [
             "line_1" => protect_input($data["address1"]),
             "line_2" => protect_input($data["address2"]),

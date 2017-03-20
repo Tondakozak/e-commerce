@@ -77,38 +77,3 @@ function check_cart_form($data) {
 }
 
 
-function save_order($user_data, $cart, $user_id) {
-
-    $query = [
-        "date" => time(),
-        "items" => $cart,
-        "payment" => "cash",
-        "status" => "progressing",
-        "tel" => protect_input($user_data["tel"]),
-        "customer_details" => [
-            "user_id" => $user_id,
-            "name" => protect_input($user_data["name"]),
-            "email" => protect_input($user_data["email"]),
-            "address" => [
-                "line_1" => protect_input($user_data["address1"]),
-                "line_2" => protect_input($user_data["address2"]),
-                "town" => protect_input($user_data["town"]),
-                "postcode" => protect_input($user_data["postcode"]),
-            ]
-        ]
-    ];
-
-    // delete cart from users collection
-    select_collection("users")->updateOne(
-        ["_id" => get_user_id()],
-        ['$set' => [
-            "cart" => []
-        ]]
-    );
-
-    // insert order to db
-    $to_db = select_collection("orders")->insertOne($query);
-    set_success("Thank you. Your order has been saved.");
-
-    return $to_db;
-}

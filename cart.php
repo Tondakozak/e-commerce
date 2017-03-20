@@ -4,6 +4,7 @@ require "common.php";
 include "src/templates/cart.php";
 include_once "src/logic/user.php";
 include_once "src/logic/cart.php";
+include_once "src/logic/orders.php";
 
 $title = "Cart";
 
