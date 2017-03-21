@@ -96,3 +96,40 @@ function save_user_details($data, $user_id) {
         ['$set' => $query]
     );
 }
+
+function track_user($user_id, $product_id) {
+    if (is_string($user_id)) {
+        $user_id = protect_input($user_id);
+    }
+
+    // get product data
+    $product_data = select_collection("products")->findOne(["_id" => $product_id]);
+
+    // if product exists
+    if ($product_data && isset($product_data["category"]) && count($product_data["category"]) > 0) {
+        $user_data = select_collection("users")->findOne(["_id" => $user_id]);
+        $user_data = mongo_to_array($user_data);
+        $user_tracking = (isset($user_data["tracking"]))?$user_data["tracking"]:[];
+
+        // add product categories to user tracking
+        foreach ($product_data["category"] as $key => $value) {
+            if (!isset($user_tracking[$value])) {
+                $user_tracking[$value] = 0;
+            }
+            $user_tracking[$value] += 1;
+        }
+
+        // update database
+        select_collection("users")->updateOne(
+            ["_id" => $user_id],
+            ['$set' =>
+                ["tracking" => $user_tracking]
+            ]
+        );
+    }
+}
+
+
+
+
+

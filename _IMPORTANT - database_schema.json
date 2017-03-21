@@ -26,6 +26,10 @@
     }
   ],
   "last_visit": 12345678
+  "tracking" : [
+    {"blue" : 5}
+    {"out-door" : 1}
+  ]
 },
 // Required fields:
 // _id, role, last_activity

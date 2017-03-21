@@ -44,3 +44,27 @@ function mongo_search($search, $mongo) {
 
     return false;
 }
+
+/**
+ * Convert mongoDB document object to array
+ * @param $mongo_obj
+ * @return array
+ */
+function mongo_to_array($mongo_obj) {
+    if ($mongo_obj instanceof MongoDB\Driver\Cursor) {
+        $array = [];
+        foreach ($mongo_obj as $item) {
+            $array[] = $item;
+        }
+    } else {
+        $array = (array) $mongo_obj;
+    }
+
+
+    foreach ($array as $key => $value) {
+        if ($value instanceof MongoDB\Model\BSONArray || $value instanceof MongoDB\Model\BSONDocument) {
+            $array[$key] = mongo_to_array($value);
+        }
+    }
+    return $array;
+}

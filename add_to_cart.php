@@ -9,7 +9,6 @@
 // common functions
 require "common.php";
 
-
 // data were sent
 if (!empty($_POST["product-id"])) {
     $product_id = protect_input($_POST["product-id"]);
@@ -72,6 +71,9 @@ if (!empty($_POST["product-id"])) {
         foreach ($cart as $c) {
             $in_cart += $c["quantity"];
         }
+
+        // track user
+        track_user(get_user_id(), $product_object_id);
 
     }
 

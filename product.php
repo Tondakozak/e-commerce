@@ -31,6 +31,9 @@ if (!$product_details) {
     exit();
 }
 
+// track user
+track_user(get_user_id(), get_object_id($_GET["id"]));
+
 // generate HTML
 generate_header("Product");
 generate_product_detail($product_details);
