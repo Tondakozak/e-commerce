@@ -10,8 +10,8 @@
 // include common files
 require "common.php";
 
-include "src/templates/product_detail.php";
-include "src/logic/get_product.php";
+include "src/templates/products.php";
+include "src/logic/products.php";
 
 // there is not $_GET["id"] or is empty
 if (empty($_GET["id"])) {
