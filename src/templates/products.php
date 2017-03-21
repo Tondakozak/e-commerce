@@ -169,7 +169,7 @@ END;
 }
 
 function generate_product_item($data) {
-    $id = protect_output($data["id"]);
+    $id = protect_output($data["_id"]);
     $name = protect_output($data["name"]);
     $brand = protect_output($data["brand"]);
     $photo = protect_output($data["photos"][0]);

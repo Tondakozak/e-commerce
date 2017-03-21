@@ -88,7 +88,7 @@ function generate_cart_table($data) {
     $collection = select_collection("products");
     foreach ($data as $item) {
         $product_info = $collection->findOne(["_id"=>get_object_id($item["product_id"])]);
-        if ($product_info) {
+        if ($product_info && $item["quantity"] > 0) {
             $row["product_id"] = $item["product_id"];
             $row["photo"] = $product_info["photos"][0];
             $row["quantity"] = $item["quantity"];
@@ -135,7 +135,7 @@ END;
                         </tbody>
                         <tfoot>
                         <tr>
-                            <td>Total: </td><td>$quantity</td><td>£$price</td>
+                            <td>Total: </td><td data-quantity="$quantity" id="total-quantity">$quantity</td><td data-price="$price" id="total-price">£$price</td>
                         </tr>
                         </tfoot>
                     </table>
@@ -147,17 +147,20 @@ END;
 
     function cart_row($d) {
         return <<<END
-                        <tr>
+                        <tr id="row-{$d["product_id"]}">
                             <td class="cart_product">
                                 <a href=""><img src="images\product-images/{$d["photo"]}" width="140" height="80" alt="{$d["product_name"]}"></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="product.php?id={$d["product_id"]}">{$d["product_name"]}</a></h4>
-                                <p><input type="number" value="$d[quantity]" class="form-control" min="0" data-product-id="{$d["product_id"]}"></p>
-                            </td>
+                                <p>
+                                <input type="number" value="$d[quantity]" class="form-control" min="0" data-product-id="{$d["product_id"]}" data-product="true" data-product-value="$d[quantity]" data-product-price="$d[price]">
+                                 <i class="loader" id="loader-{$d["product_id"]}" style=""></i>
+                                 </p>
+                            </td>                           
                             <td class="cart_price">
                                 <p>£$d[price]</p>
-                                <p><b>£$d[price_total]</b></p>
+                                <p><b id="price-{$d["product_id"]}" data-price="$d[price_total]">£$d[price_total]</b></p>
                             </td>
 
                         </tr>
