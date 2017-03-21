@@ -2,6 +2,7 @@
 //require
 require "common.php";
 include "src/templates/cart.php";
+include "src/templates/orders.php";
 include_once "src/logic/user.php";
 include_once "src/logic/cart.php";
 include_once "src/logic/orders.php";
@@ -11,11 +12,16 @@ $title = "Cart";
 $cart_data = get_cart(get_user_id());
 $user_data = get_user_address(get_user_id());
 
+// save order
 if (isset($_POST["email"])) {
     $form_data = check_cart_form($_POST);
+
+    // if data are correct, save order
     if ($form_data && $cart_data) {
         save_user_details($form_data, get_user_id());
         $order_saved = save_order($form_data, $cart_data, get_user_id());
+        $order_id = $order_saved->getInsertedId();
+        $new_order_data = get_order_details($order_id);
         $title = "Order Summary";
     }
 }
@@ -31,7 +37,7 @@ generate_header($title);
 generate_page_title($title);
 
 if (isset($order_saved)) { // show order summary
-    //generate_order_summary($cart_data, $user_data);
+    generate_order_detail(get_user_role(), $new_order_data);
     echo "saved";
 } else {
 

@@ -19,7 +19,7 @@ function save_order($user_data, $cart, $user_id) {
         "date" => time(),
         "items" => $cart,
         "payment" => "cash",
-        "status" => "progressing",
+        "status" => "processing",
         "arriving" => time() + (60*60*24*5),
         "customer_details" => [
             "tel" => protect_input($user_data["tel"]),
@@ -57,11 +57,12 @@ function save_order($user_data, $cart, $user_id) {
  */
 function get_order_details($order_id) {
     $order = select_collection("orders")->findOne([
-        "_id" => get_object_id($_GET["id"])
+        "_id" => $order_id
     ]);
     if (!$order) {
         return false;
     } else {
+        $data["id"] = $order["_id"];
         $data["date"] = $order["date"];
         $data["status"] = $order["status"];
         $data["arriving"] = $order["arriving"];
@@ -137,4 +138,19 @@ function get_orders($user_id) {
     }
 
     return $o;
+}
+
+/**
+ * Change status of the order
+ * @param $status
+ * @param $order_id
+ * @return \MongoDB\UpdateResult
+ */
+function change_order_status($status, $order_id) {
+    return select_collection("orders")->updateOne(
+        ["_id" => $order_id],
+        ['$set' => [
+            "status" => protect_input($status)
+        ]]
+    );
 }

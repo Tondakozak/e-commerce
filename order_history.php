@@ -19,8 +19,10 @@ page_for_customer();
 
 // detail of a order
 if (isset($_GET["id"])) {
+
+
     // get the order details
-    $order = get_order_details($_GET["id"]);
+    $order = get_order_details(get_object_id($_GET["id"]));
 
     if (!$order || $order["customer_details"]["user_id"] != get_user_id()) {
         // if the order doesn't exist or it is not current user's order
@@ -28,6 +30,16 @@ if (isset($_GET["id"])) {
         header("Location: order_history.php");
         exit();
     } else {
+
+        // change order status
+        if (isset($_POST["status"]) && $_POST["status"] == "canceled") {
+            change_order_status($_POST["status"], $order["id"]);
+            set_success("The order was canceled");
+            header("location: ".$_SERVER["REQUEST_URI"]);
+            exit();
+        }
+
+
         $show_order_detail = true;
         $title = "Order detail";
     }

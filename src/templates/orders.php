@@ -14,8 +14,18 @@ function generate_order_detail($role, $data) {
         <section>
             <h4>Overview</h4>
             <p><b>Date of order:</b> ".date("d/m/Y", $data["date"])."</p>
-            <p><b>Status: </b>".ucfirst($data["status"])." <a href='#' class='btn btn-danger'>Cancel Order</a> </p>
+            <p><b>Status: </b>".ucfirst($data["status"]);
+    if ($data["status"] == "processing") {
+        echo "
+            <form method='post'>
+                <input type='hidden' value='canceled' name='status'>
+                <input type='submit' name='change_status' value='Cancel Order' class='btn btn-danger'>
+            </form>            
             <p><b>Arriving: </b>".date("d/m/Y", $data["arriving"])."</p>
+            ";
+    }
+
+    echo "
             <hr>
 
             <h4>Your details</h4>
