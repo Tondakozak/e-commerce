@@ -37,4 +37,7 @@ track_user(get_user_id(), get_object_id($_GET["id"]));
 // generate HTML
 generate_header("Product");
 generate_product_detail($product_details);
+
+generate_recomendation(get_recommended_data(get_user_id()));
+
 generate_footer();

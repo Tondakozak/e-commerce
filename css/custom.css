@@ -130,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
+  /*height: 380px;*/
   width: 100%;
 }
 

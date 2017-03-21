@@ -12,10 +12,10 @@ echo "<div class='row'>";
 generate_products_sidebar();
 
 //connect to database
-$products = (new MongoDB\Client)->ecomerce->products->find();
+$products = (new MongoDB\Client)->ecomerce->products->find(["quantity" => ['$gt' => 0]]);
 
 foreach ($products as $p) {
-    generate_product_item($p["_id"], $p["name"], $p["brand"], $p["photos"][0], $p["price"]);
+    generate_product_item($p);
 }
 
 echo "</div>";

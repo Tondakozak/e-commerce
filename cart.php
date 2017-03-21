@@ -3,9 +3,11 @@
 require "common.php";
 include "src/templates/cart.php";
 include "src/templates/orders.php";
+include "src/templates/products.php";
 include_once "src/logic/user.php";
 include_once "src/logic/cart.php";
 include_once "src/logic/orders.php";
+include_once "src/logic/products.php";
 
 $title = "Cart";
 
@@ -49,6 +51,6 @@ if (isset($order_saved)) { // show order summary
     generate_address_form($user_data);
 
 }
-
+generate_recomendation(get_recommended_data(get_user_id()));
 generate_footer();
 

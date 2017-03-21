@@ -168,7 +168,12 @@ END;
 
 }
 
-function generate_product_item($id, $name, $brand, $photo, $price) {
+function generate_product_item($data) {
+    $id = protect_output($data["id"]);
+    $name = protect_output($data["name"]);
+    $brand = protect_output($data["brand"]);
+    $photo = protect_output($data["photos"][0]);
+    $price = protect_output($data["price"]);
     //set_script("cart.js");
     echo <<<END
 
@@ -227,7 +232,7 @@ function generate_product_detail($data) {
             <div class="product-details"><!--product-details-->
                 <div class="col-sm-5">
                     <div class="view-product">
-                        <img src="images/product-details/{$data["photos"][0]}" alt="$data[name]">
+                        <img src="images/product-images/{$data["photos"][0]}" alt="$data[name]">
 
                     </div>
 
@@ -268,4 +273,15 @@ function generate_product_detail($data) {
 
 END;
 
+}
+
+
+function generate_recomendation($data) {
+    echo "<section class=\"row\">
+        <h3 class=\"text-center\">Recommended for you</h3>";
+    foreach ($data as $item) {
+        generate_product_item($item);
+    }
+
+    echo "</section>";
 }
