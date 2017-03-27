@@ -1,4 +1,61 @@
 <?php
+    function generate_admin($title){
+        $active = str_replace(" ", "_", strtolower($title)); ?>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+
+            <title><?php echo $title;?> | E-Commerce</title>
+
+            <link href="css/bootstrap.css" rel="stylesheet">
+            <link href="css/custom.css" rel="stylesheet">
+        </head>
+
+        <body>
+
+        <!-- navigation -->
+        <nav class="navbar navbar-inverse" role="navigation">
+            <div class="container">
+
+                <!-- logo and hamburger menu button -->
+                <div class="navbar-header">
+                    <!-- hamburger menu button -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <!-- Navbar links -->
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li><a></a></li>
+                        <li><a></a></li>
+
+
+                        <li><a href="add_product.php">Insert Products</a></li>
+                        <li><a href="manage_products.php">Manage products</a></li>
+                        <li><a href="order_received_staff.php">Manage Orders</a></li>
+                    </ul>
+
+                    <!-- Logout -->
+                    <ul class="nav navbar-nav">
+                        <li style="margin-left:420px !important;"><a href="logout.php">Logout</a></li>
+
+                    </ul>
+                </div>  <!-- end - navbar links -->
+            </div>
+        </nav> <!-- end - navigation -->
+        <?php
+        show_messages();
+}
+
 function generate_header($title){
     $active = str_replace(" ", "_", strtolower($title));
 
@@ -44,9 +101,9 @@ function generate_header($title){
                 </ul>
 
                 <!-- search form -->
-                <form class="navbar-form navbar-right" role="search">
+                <form action="search.php" method="get" class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control">
+                        <input type="text" name="name" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>

@@ -1,16 +1,10 @@
 <?php
 //require
 require "common.php";
-
-
 generate_header("Home"); ?>
-
-<!DOCTYPE html>
 
 <!-- main content -->
 <div class="container">
-
-
     <div class="row page-intro">
         <div class="col-lg-122">
             <br>
@@ -24,11 +18,5 @@ generate_header("Home"); ?>
         <br><br><br><br><br><br><br><br><br><br><br><br>
         <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
-
-
-
-    <!-- footer -->
- <?php
-
-generate_footer(); ?>
 </div> <!-- end - main content -->
+<?php generate_footer(); ?>

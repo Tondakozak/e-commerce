@@ -1,8 +1,6 @@
 <?php
-
-
 function login_form(){
-	?>
+?>
 	
 	<div class="row page-intro">
             <div class="col-lg-12  ">

@@ -223,3 +223,9 @@ pip-log.txt
 testing.php
 t-testing.*
 t-test*
+
+
+#########################
+# Rohan's stupid files
+#########################
+.idea*

@@ -158,7 +158,8 @@ function get_recommended_data($user_id) {
     $limit = 3;
 
     $recommend_ids = get_recomendation($limit, $user_id);
-    if (count($recommend_ids) > $limit) {
+    if (!$recommend_ids) {$recommend_ids = [];}
+    if (count($recommend_ids) < $limit) {
         $popular_ids = get_most_popular($limit - count($recommend_ids));
         $recommend_ids = array_merge($recommend_ids, $popular_ids);
     }

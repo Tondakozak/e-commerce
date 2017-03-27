@@ -47,7 +47,10 @@ if (isset($_POST["email"])) {
 					$_SESSION ["user"]["role"] = $document ["role"];
 
 					set_success("You Are Logged In");
-
+					if ($document ["role"] == "staff") {
+						header("Location: manage_products.php");
+						exit();
+					}
 					// redirecting to home page
 					header("Location: /");
 					exit();

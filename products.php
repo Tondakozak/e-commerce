@@ -7,8 +7,7 @@ include "src/templates/products.php";
 generate_header("Products");
 generate_page_title("Products");
 
-echo "<div class='row'>";
-
+echo "<div class=row>";
 generate_products_sidebar();
 
 //connect to database
