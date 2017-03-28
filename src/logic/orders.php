@@ -130,7 +130,16 @@ function get_orders($user_id) {
     $o = [];
     foreach ($orders as $item) {
         $temp["date"] = $item["date"];
-        $temp["price"] = 500;
+        $temp["name"] = $item["customer_details"]["name"];
+
+        // get total price
+        $price = 0;
+        foreach ($item["items"] as $it) {
+            $product_detail = select_collection("products")->findOne(["_id" => $it["product_id"]]);
+            $price += $it["quantity"]*$product_detail["price"];
+        }
+
+        $temp["price"] = $price;
         $temp["order_id"] = $item["_id"];
         $temp["status"] = $item["status"];
 

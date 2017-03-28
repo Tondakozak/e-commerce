@@ -9,12 +9,18 @@
 
 function generate_order_detail($role, $data) {
     $data = protect_output($data);
+    
+    // status style
+    $status_style = ($data["status"] == "processing"?" style='font-weight: bold; color: black'":"").
+                            ($data["status"] == "canceled"?" style='color: red'":"").
+                            ($data["status"] == "dispatched"?" style='color: green'":"");
+    
     echo "
 <!-- customer details -->
         <section>
             <h4>Overview</h4>
             <p><b>Date of order:</b> ".date("d/m/Y", $data["date"])."</p>
-            <p><b>Status: </b>".ucfirst($data["status"]);
+            <p><b>Status: </b><span $status_style>".ucfirst($data["status"])."</span>";
     if ($data["status"] == "processing" && $role == "customer") {
         echo "
             <form method='post'>
@@ -151,6 +157,7 @@ function generate_orders_list($data) {
                         <thead>
                         <tr class="cart_menu">
                             <td class="date">Date</td>
+                            <td class="user">Name</td>
                             <td class="description">Price</td>
                             <td class="user">Detail</td>
                             <td class="user">Status</td>
@@ -162,8 +169,11 @@ END;
 
     foreach ($data as $item) {
         echo "
-                        <tr>
+                        <tr".($item["status"] == "processing"?" style='font-weight: bold; color: black'":"").
+                            ($item["status"] == "canceled"?" style='color: red'":"").
+                            ($item["status"] == "dispatched"?" style='color: green'":"").">
                             <td>".date("d/m/Y", $item["date"])."</td>
+                            <td>$item[name]</td>
                             <td>£$item[price]</td>
                             <td><a href='?id=$item[order_id]' class='btn btn-info'>Detail</a></td>
                             <td>$item[status]</td>

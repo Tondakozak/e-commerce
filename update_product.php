@@ -88,7 +88,7 @@ $findProduct = [
         "_id" => new MongoDB\BSON\ObjectID($_GET["update"])
     ];
 
-generate_admin("Update Product");
+generate_header("Update Product");
 
 include 'src/templates/update_product.php';
 update_form($findProduct);
