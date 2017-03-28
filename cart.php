@@ -25,6 +25,7 @@ if (isset($_POST["email"])) {
         $order_id = $order_saved->getInsertedId();
         $new_order_data = get_order_details($order_id);
         $title = "Order Summary";
+        $in_cart_common = 0;
     }
 }
 // if the cart is empty
@@ -35,7 +36,7 @@ elseif (!$cart_data) {
 
 
 // generate HTML
-generate_header($title);
+generate_header($title, $in_cart_common);
 generate_page_title($title);
 
 if (isset($order_saved)) { // show order summary

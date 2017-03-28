@@ -195,6 +195,7 @@ function generate_product_item($data) {
 					    <input type="hidden" name="product-quantity" value="1">
 					    <input type="hidden" name="product-id" value="$id">					
                         <input name="Add" value="Add to Cart" type="submit" class="btn btn-default">
+                        <div class='label label-success'>Added into Cart</div>
                     </form>
             </article>
         </div>

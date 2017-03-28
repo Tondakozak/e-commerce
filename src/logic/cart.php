@@ -14,7 +14,13 @@ function get_cart($user_id) {
     if (!$cart_db || !isset($cart_db["cart"]) || count($cart_db["cart"]) == 0) {
         return false;
     } else {
-        return $cart_db["cart"];
+        $cart = [];
+        foreach ($cart_db["cart"] as $item) {
+            if ($item["quantity"] > 0) {
+                $cart[] = $item;
+            }
+        }
+        return $cart;
     }
 }
 
@@ -75,5 +81,6 @@ function check_cart_form($data) {
     }
 
 }
+
 
 

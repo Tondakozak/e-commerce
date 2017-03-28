@@ -150,4 +150,26 @@ function set_default_staff_user() {
 }
 
 
+/**
+ * Returns number of items in the cart
+ * @param $user_id
+ * @return int
+ */
+function count_items_in_cart($user_id) {
+    $collection = select_collection("users");
+
+    $cart_db = $collection->findOne(["_id" => $user_id]);
+
+    if (!$cart_db || !isset($cart_db["cart"]) || count($cart_db["cart"]) == 0) {
+        return 0;
+    } else {
+        $count = 0;
+        foreach ($cart_db["cart"] as $cart) {
+            $count += $cart["quantity"];
+        }
+
+        return $count;
+    }
+}
+
 

@@ -71,7 +71,7 @@ if (isset($_POST["email"])) {
 }
 
 
-generate_header("login");
+generate_header("Login", $in_cart_common);
 
 
 

@@ -3,7 +3,7 @@
 require "common.php";
 
 
-generate_header("Home"); ?>
+generate_header("TOS", $in_cart_common); ?>
 
 
 

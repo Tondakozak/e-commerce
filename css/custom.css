@@ -259,6 +259,29 @@ h1, h2, h3, h4, h5, h6 {
     max-height: 100%;
 }
 
+@keyframes t-hide {
+    0%   {opacity: 1}
+    50%   {opacity: 1}
+    100% {opacity: 0}
+}
+.product-item .label {
+    display: none;
+}
+.product-item .show-label {
+    display: inline;
+    animation: t-hide 4s linear;
+}
+
+
+
+
+
+
+
+
+
+
+
 .share {
   margin-top: 15px;
 }

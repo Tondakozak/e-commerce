@@ -1,8 +1,10 @@
 <?php
 session_start();
-include 'src/templates/layout.php';
+
 include "src/logic/database.php";
 include "src/logic/user.php";
+include 'src/templates/layout.php';
+
 
 // mongoDB functions
 require("libraries/mongodb/src/functions.php");
@@ -16,9 +18,7 @@ function autoloadFunction($class) {
         require("libraries/mongodb/src/" . $path . ".php");
         return;
     }
-
 }
-
 // classes autoload
 spl_autoload_register("autoloadFunction");
 
@@ -35,7 +35,8 @@ delete_old_carts();
 set_default_staff_user();
 
 
-
+// number of items in cart
+$in_cart_common = count_items_in_cart(get_user_id());
 
 
 

@@ -15,6 +15,8 @@
  */
 function save_order($user_data, $cart, $user_id) {
 
+    // delete
+
     $query = [
         "date" => time(),
         "items" => $cart,

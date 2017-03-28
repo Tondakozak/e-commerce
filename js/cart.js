@@ -25,6 +25,7 @@ function add_into_cart(event, form_element) {
 
             if (response.result) {
                 update_items_in_cart(response.inCart);
+                show_label(form_element);
             } else {
                 alert(response.error);
             }
@@ -37,6 +38,14 @@ function add_into_cart(event, form_element) {
     return false;
 }
 
+
+function show_label(form_element) {
+    var label = form_element.getElementsByClassName("label")[0];
+    label.className += " show-label";
+    setTimeout(function () {
+        label.className = "label label-success";
+    }, 3500);
+}
 
 function update_items_in_cart(num) {
     document.getElementById("nav-cart-items").innerHTML = "("+num+")";

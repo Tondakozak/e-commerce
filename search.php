@@ -3,7 +3,7 @@
 require "common.php";
 
 
-generate_header("Search"); ?>
+generate_header("Search", $in_cart_common); ?>
 
 <?php
 //Connect to MongoDB

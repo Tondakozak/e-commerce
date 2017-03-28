@@ -50,7 +50,7 @@ if (isset($_GET["id"])) {
 
 
 // generate HTML
-generate_header($title);
+generate_header($title, $in_cart_common);
 generate_page_title($title);
 
 if (isset($show_order_detail)) {

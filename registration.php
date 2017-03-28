@@ -72,7 +72,7 @@ if (isset($_POST["email"])) {
 
 }
 
-generate_header("Registration");
+generate_header("Registration", $in_cart_common);
 
 // show form
 include 'src/templates/registration_form.php';

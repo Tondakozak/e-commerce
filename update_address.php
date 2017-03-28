@@ -27,7 +27,7 @@ if (isset($_POST["email"])) {
 
 
 // generate HTML
-generate_header($title);
+generate_header($title, $in_cart_common);
 generate_page_title($title);
 
 

@@ -3,7 +3,7 @@
 require "common.php";
 
 
-generate_header("Home"); ?>
+generate_header("Contact", $in_cart_common); ?>
 
 <!-- main content -->
 <div class="container">

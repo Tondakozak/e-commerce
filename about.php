@@ -1,7 +1,7 @@
 <?php
 //require
 require "common.php";
-generate_header("Home"); ?>
+generate_header("About", $in_cart_common); ?>
 
 <!-- main content -->
 <div class="container">

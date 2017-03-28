@@ -4,7 +4,7 @@ require "common.php";
 
 include "src/templates/products.php";
 
-generate_header("Products");
+generate_header("Products", $in_cart_common);
 generate_page_title("Products");
 
 echo "<div class=row>";

@@ -12,7 +12,7 @@ $recommended_data = get_recommended_data(get_user_id());
 
 // generate HTML
 
-generate_header("Home");
+generate_header("Home", $in_cart_common);
 generate_slider($featured_data);
 generate_recomendation($recommended_data);
 generate_footer();

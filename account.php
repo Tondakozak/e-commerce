@@ -8,7 +8,7 @@ page_for_customer();
 $title = "My Account";
 
 // generate HTML
-generate_header($title);
+generate_header($title, $in_cart_common);
 generate_page_title($title);
 
 generate_account_default();
