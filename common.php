@@ -31,6 +31,10 @@ update_last_visit();
 delete_old_carts();
 
 
+// Ensure that at least one Staff user is in the DB
+set_default_staff_user();
+
+
 
 
 

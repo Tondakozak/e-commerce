@@ -134,7 +134,20 @@ function track_user($user_id, $product_id) {
     }
 }
 
+/**
+ * If there is not any staff user, the default one is added
+ */
+function set_default_staff_user() {
+    // if there is not any staff user
+    if (!select_collection("users")->findOne(["role" => "staff"])) {
+        $user_data["email"] = "staff@staff.com";
+        $user_data["password"] = password_hash("staff", 1);
+        $user_data["staff"] = "staff";
 
+        // insert to DB
+        select_collection("users")->insertOne($user_data);
+    }
+}
 
 
 
