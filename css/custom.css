@@ -236,6 +236,29 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 5px;
 }
 
+.product-item-cover {
+    display: block;
+    width: 250px;
+    height:250px;
+    text-align: center;
+    margin: auto;
+    line-height: 250px;
+}
+
+.product-item {
+    border-bottom: 1px solid rgb(240, 240, 240);
+}
+
+.product-item:hover {
+    background: rgba(240, 240, 240, 0.8);
+}
+
+.product-item-cover img {
+    display: inline-block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .share {
   margin-top: 15px;
 }
@@ -292,6 +315,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .register-form label {
     margin-top: 10px;
+}
+
+.form-inline {
+    display: inline-block;
 }
 
 .loader {

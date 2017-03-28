@@ -68,6 +68,13 @@ function products_form(){
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-lg-4">
+                    <label for="size">Size</label>
+                    <input name="size" class="form-control" type="number" id="size">
+                </div>
+            </div>
+
 
             <hr>
             <div class="row">

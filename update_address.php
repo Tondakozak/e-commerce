@@ -1,50 +1,38 @@
 <?php
 //require
 require "common.php";
+include_once "src/logic/user.php";
+include_once "src/logic/products.php";
+include_once "src/logic/cart.php";
+include_once "src/templates/cart.php";
+include_once "src/templates/products.php";
 
-// only registered user
-page_for_customer();
-
-if (isset($_POST["update"])) {
-
-    // connect to mongodb server
-    $collection = (new MongoDB\Client)->ecomerce->cart;
-
-    //Convert to PHP array
-    $name = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_STRING);
-    $address = filter_input(INPUT_POST, 'address', FILTER_SANITIZE_STRING);
-    $address2= filter_input(INPUT_POST, 'address2', FILTER_SANITIZE_STRING);
-    $town = filter_input(INPUT_POST, 'town', FILTER_SANITIZE_STRING);
-    $postcode = filter_input(INPUT_POST, 'postcode', FILTER_SANITIZE_STRING);
-    $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
-    //$id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_STRING);
+$title = "Update Address";
 
 
-$findProduct = [
-        //"_id" => new MongoDB\BSON\ObjectID($id)
-        "_id" => get_user_id() // user can update only his own data (Tony)
-    ];
+$user_data = get_user_address(get_user_id());
 
-    $updateProduct = [
-     '$set' => [ 
-       "name" => $name,
-       "Address" => $address,
-       "AddressL" => $address2,
-       "Town" => $town,
-       "Postcode" => $postcode,
-       "number" => $phone
-       
-       ]
-    ];
+// save order
+if (isset($_POST["email"])) {
+    $form_data = check_cart_form($_POST);
 
-    $check_update = $collection->updateOne($findProduct, $updateProduct);
-    $_SESSION["message"]["success"][] = "Product Updated Successfully!";
-
+    // if data are correct, save order
+    if ($form_data) {
+        save_user_details($form_data, get_user_id());
+        set_success("Your details were changed.");
+        $user_data = get_user_address(get_user_id());
+    }
 }
 
 
-generate_header("Change address");
 
-include 'src/templates/update_customer.php';
-update_form1();
+// generate HTML
+generate_header($title);
+generate_page_title($title);
+
+
+generate_address_form($user_data);
+
+generate_recomendation(get_recommended_data(get_user_id()));
 generate_footer();
+

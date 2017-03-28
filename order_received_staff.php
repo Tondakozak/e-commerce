@@ -42,7 +42,7 @@ generate_admin("Products"); ?>
 	<?php
 
 	//connect to database
-	$order = (new MongoDB\Client)->ecomerce->order->find();
+	$order = (new MongoDB\Client)->ecomerce->orders->find();
 
 	foreach ($order as $cust) {
 ?>
@@ -58,7 +58,7 @@ generate_admin("Products"); ?>
                             </td>
                             <td>
 
-                                <a href="order_detail_staff.php" class="btn btn-info">Detail</a>
+                                <a href="manage_orders.php" class="btn btn-info">Detail</a>
                             </td>
                             <td>
       							Pending						

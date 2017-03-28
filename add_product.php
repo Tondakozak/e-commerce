@@ -66,6 +66,7 @@ if (isset($_POST["submit"])) {
 	   "brand" => $brand,
 	   "price" => intval($price),
 	   'quantity' => intval($quantity),
+	   'size' => intval($_POST["size"]), // You missed size (Tony)
         "category" => explode(", ", protect_input($_POST["category"])), // You missed category (Tony)
         "gender" => protect_input($_POST["gender"]), // You missed gender (Tony)
 	   'photos' => [$uploadFileName]
@@ -79,7 +80,7 @@ if (isset($_POST["submit"])) {
 
 }
 
-generate_header("Registration");
+generate_header("New Product");
 
 include 'src/templates/add_product.php';
 products_form();

@@ -15,7 +15,7 @@ function generate_order_detail($role, $data) {
             <h4>Overview</h4>
             <p><b>Date of order:</b> ".date("d/m/Y", $data["date"])."</p>
             <p><b>Status: </b>".ucfirst($data["status"]);
-    if ($data["status"] == "processing") {
+    if ($data["status"] == "processing" && $role == "customer") {
         echo "
             <form method='post'>
                 <input type='hidden' value='canceled' name='status'>
@@ -25,10 +25,53 @@ function generate_order_detail($role, $data) {
             ";
     }
 
+    if ($role == "staff") {
+        // buttons for changing status
+
+        if ($data["status"] != "canceled") {
+            echo "
+            <form method='post'  class='form-inline'>
+                <input type='hidden' value='canceled' name='status'>
+                <input type='submit' name='change_status' value='Cancel Order' class='btn btn-danger'>
+            </form>
+            ";
+        }
+
+        if ($data["status"] != "processing") {
+            echo "
+            <form method='post' class='form-inline'>
+                <input type='hidden' value='processing' name='status'>
+                <input type='submit' name='change_status' value='Change to Processing' class='btn btn-primary'>
+            </form>
+            ";
+        }
+
+        if ($data["status"] != "dispatched") {
+            echo "
+            <form method='post' class='form-inline'>
+                <input type='hidden' value='dispatched' name='status'>
+                <input type='submit' name='change_status' value='Was Dispatched' class='btn btn-info'>
+            </form>
+            ";
+        }
+
+        // form for changing arriving date
+        if ($data["status"] == "processing") {
+            echo "<p><br><b>Arriving: </b>
+            <form method='post'  class='form-inline'>
+                <input type='text' value='".date("d/m/Y", $data["arriving"])."' name='date' class='form-control'>
+                <input type='submit' name='change_date' value='Change Date' class='btn'>
+            </form></p>
+            ";
+        }
+
+
+    }
+
     echo "
             <hr>
 
-            <h4>Your details</h4>
+            <h4>".($role == "customer"?"Your Details":"Customer Details")."</h4>
             <p>{$data["customer_details"]["name"]}</p>
             <p>{$data["customer_details"]["address"]["line_1"]}</p>
             <p>{$data["customer_details"]["address"]["line_2"]}</p>

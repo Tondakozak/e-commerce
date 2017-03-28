@@ -71,6 +71,7 @@ if (isset($_POST["update"])) {
        "price" => intval($price), // use must store it as int (Tony)
        "category" => explode(", ", protect_input($_POST["category"])), // you missed category (Tony)
        "gender" => protect_input($_POST["gender"]), // you missed gender (Tony)
+       "size" => intval($_POST["size"]), // you missed size (Tony)
        'quantity' => intval($quantity) // you must store it as int (Tony)
        ]
     ];

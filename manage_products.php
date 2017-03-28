@@ -6,7 +6,7 @@ require "common.php";
 // you must ensure that this page will be available only for staff (Tony)
 page_for_staff();
 
-generate_admin("Products"); ?>
+generate_header("Manage Products"); ?>
 
 <!-- main content -->
 <div class="container">

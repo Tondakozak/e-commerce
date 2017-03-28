@@ -168,6 +168,10 @@ END;
 
 }
 
+/**
+ * Generate HTML for ine item in products list
+ * @param $data
+ */
 function generate_product_item($data) {
     $id = protect_output($data["_id"]);
     $name = protect_output($data["name"]);
@@ -177,9 +181,9 @@ function generate_product_item($data) {
     //set_script("cart.js");
     echo <<<END
 
-        <div class="col-md-3">
+        <div class="col-md-3  product-item">
             <article class="article-intro">
-                <a href="product.php?id=$id">
+                <a href="product.php?id=$id" class="product-item-cover">
                     <img class="img-responsive img-rounded" src="images/product-images/$photo" alt="$name">
                 </a>
                 <h3>
@@ -275,7 +279,10 @@ END;
 
 }
 
-
+/**
+ * Generate HTML for recommendation section
+ * @param $data
+ */
 function generate_recomendation($data) {
     echo "<section class=\"row\">
         <h3 class=\"text-center\">Recommended for you</h3>";

@@ -1,6 +1,8 @@
 <?php
 
-function generate_slider(){
+function generate_slider($data){
+    $data = mongo_to_array($data);
+    $data = protect_output($data);
 ?>
 
 <div class="jumbotron feature">
@@ -8,36 +10,38 @@ function generate_slider(){
 
         <div id="feature-carousel" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-target="#feature-carousel" data-slide-to="0" class="active"></li>
-                <li data-target="#feature-carousel" data-slide-to="1"></li>
-                <li data-target="#feature-carousel" data-slide-to="2"></li>
+
+                <?php
+                $slider_i = 0;
+                foreach ($data as $d) {
+                    echo "<li data-target=\"#feature-carousel\" data-slide-to=\"$slider_i\" ".($slider_i == 0?"class=\"active\"":"")."></li>\n";
+
+                    $slider_i++;
+                }
+
+                ?>
             </ol>
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <a href="#">
-                        <img class="img-responsive" src="../images/product-images/jd.jpg" alt="">
+
+                <?php
+                $slider_i = 0;
+                foreach ($data as $d) {
+                    echo "<div class=\"item ".($slider_i == 0?" active":"")." \">
+                    <a href=\"product.php?id={$d["_id"]}\">
+                        <img class=\"img-responsive\" src=\"images/product-images/{$d["photos"][0]}\" alt=\"{$d["name"]}\">
                     </a>
-                    <div class="carousel-caption">
-                        <h3>Timberland</h3>
+                    <div class=\"carousel-caption\">
+                        <h3>{$d["brand"]}</h3>
                     </div>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img class="img-responsive" src="../images/product-images/jd.jpg" alt="">
-                    </a>
-                    <div class="carousel-caption">
-                        <h3>Timberland</h3>
-                    </div>
-                </div>
-                <div class="item">
-                    <a href="#">
-                        <img class="img-responsive" src="../images/product-images/jd.jpg" alt="">
-                    </a>
-                    <div class="carousel-caption">
-                        <h3>Timberland</h3>
-                    </div>
-                </div>
+                </div>\n";
+
+                    $slider_i++;
+                }
+
+                ?>
             </div>
+
+
             <a class="left carousel-control" href="#feature-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>

@@ -113,11 +113,11 @@ function get_orders($user_id) {
         return false;
     }
 
-    // for customer select only his orders
-    if (is_customer()) {
+    // for customer select only his orders (or all orders for staff
+    if (is_customer() || is_staff()) {
         $orders = [];
         foreach ($orders_details as $item) {
-            if ($item["customer_details"]["user_id"] == $user_id) {
+            if ($item["customer_details"]["user_id"] == $user_id ||is_staff()) {
                 $orders[] = $item;
             }
         }
@@ -151,6 +151,21 @@ function change_order_status($status, $order_id) {
         ["_id" => $order_id],
         ['$set' => [
             "status" => protect_input($status)
+        ]]
+    );
+}
+
+/**
+ * Change date of order arriving
+ * @param $date
+ * @param $order_id
+ * @return \MongoDB\UpdateResult
+ */
+function change_arriving_date($date, $order_id) {
+    return select_collection("orders")->updateOne(
+        ["_id" => $order_id],
+        ['$set' => [
+            "arriving" => strtotime(str_replace("/", "-", $date)) // "/" must be changed to "-" for parsing the date as a british format
         ]]
     );
 }

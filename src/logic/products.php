@@ -155,7 +155,7 @@ function get_recomendation($limit, $user_id) {
  * @return array
  */
 function get_recommended_data($user_id) {
-    $limit = 3;
+    $limit = 4;
 
     $recommend_ids = get_recomendation($limit, $user_id);
     if (!$recommend_ids) {$recommend_ids = [];}
@@ -172,4 +172,22 @@ function get_recommended_data($user_id) {
 
     return $data;
 
+}
+
+/**
+ * Return data of featured items
+ * @param $limit
+ * @return array
+ */
+function get_featured_data($limit) {
+
+     $popular_ids = get_most_popular($limit);
+
+    $data = [];
+
+    foreach ($popular_ids as $popular) {
+        $data[] = get_product($popular);
+    }
+
+    return $data;
 }

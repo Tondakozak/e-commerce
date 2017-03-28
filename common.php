@@ -35,18 +35,6 @@ delete_old_carts();
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 // ****************************************************
 // *
 // * functions for users and authentication
