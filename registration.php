@@ -1,6 +1,7 @@
 <?php
 //require common functions
 require "common.php";
+include 'src/templates/registration_form.php';
 
 // redirect if is logged
 page_for_guest();
@@ -8,13 +9,13 @@ page_for_guest();
 // if the registration form was sent
 if (isset($_POST["email"])) {
 	//connect to database
-	$collection = (new MongoDB\Client)->ecomerce->users;
+	$collection = select_collection("users");
 
 	//Convert to PHP array
-	$username = filter_input(INPUT_POST, 'name', FILTER_SANITIZE_STRING);
-	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_STRING);
-	$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-	$passwordagain = filter_input(INPUT_POST, 'password_again', FILTER_SANITIZE_STRING);
+	$username = protect_input($_POST["name"]);
+	$email = protect_input($_POST["email"]);
+	$password = protect_input($_POST["password"]);
+	$passwordagain = protect_input($_POST["password_again"]);
 	$dataArray = [ 
 	   "name" => trim($username),
 	   "email" => strtolower(trim($email)),
@@ -35,7 +36,8 @@ if (isset($_POST["email"])) {
 	}
 	else {
 	    // check if the email doesn't exists in DB
-	    $document = $collection->findOne(['email' => $dataArray['email']]);
+	    $document = $collection->findOne(['$and' => [['email' => $dataArray['email']],
+                                                    ["role" => ['$ne' => "guest"]]]]);
 		if ($document != null) {
 			$error = true;
             set_error("Email Already in Our Database, Choose Another Email Address");
@@ -72,10 +74,10 @@ if (isset($_POST["email"])) {
 
 }
 
+// Generate HTML
 generate_header("Registration", $in_cart_common);
 
 // show form
-include 'src/templates/registration_form.php';
 registration_form();
 
 
