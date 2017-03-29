@@ -42,7 +42,8 @@
   "name": "Blue boot",
   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
   "photos": ["15.jpg", "254.jpg", "2569.jpg"],
-  "amount": 500,
+  "quantity": 500,
+  "ordered_quantity" : 30,
   "category":
     [
       "out-door",

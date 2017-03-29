@@ -41,7 +41,7 @@ function update_cart_in_db($cart, $user_id) {
 function decrease_product_quantity($product_id, $quantity) {
     return select_collection("products")->updateOne(
         ["_id" => get_object_id($product_id)],
-        ['$inc' => ["quantity" => (0-$quantity)]]);
+        ['$inc' => ["quantity" => (0-$quantity), "ordered_quantity" => $quantity]]);
 }
 
 

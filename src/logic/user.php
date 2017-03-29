@@ -36,7 +36,7 @@ function delete_old_carts() {
         foreach ($old["cart"] as $item) {
             select_collection("products")->updateOne(
                 ["_id" => $item["_id"]],
-                ['$inc' => ["quantity" => $item["quantity"]]]
+                ['$inc' => ["quantity" => $item["quantity"], "ordered_quantity" => (0-$item["quantity"])]]
             );
         }
 

@@ -14,22 +14,6 @@ function get_product($id) {
     if (!$data) {
         return false;
     } else {
-        /*
-        $product_data["id"] = $data["_id"];
-        $product_data["description"] = $data["description"];
-        $product_data["name"] = $data["name"];
-        $product_data["quantity"] = $data["quantity"];
-        $product_data["gender"] = $data["gender"];
-        $product_data["size"] = $data["size"];
-        $product_data["price"] = $data["price"];
-
-        foreach ($data["photos"] as $photo) {
-            $product_data["photos"][] = $photo;
-        }
-        foreach ($data["category"] as $category) {
-            $product_data["category"][] = $category;
-        }
-        */
         $product_data = mongo_to_array($data);
         $product_data["id"] = $product_data["_id"];
 
@@ -64,6 +48,22 @@ db.products.insert(
  * @return array|bool
  */
 function get_most_popular($limit) {
+    $products = select_collection("products")->find(
+        ["quantity" => ['$gt' => 0]],
+        [
+            "limit"=>$limit,
+            "sort" => ["ordered_quantity" => 1],
+            "projection" => [
+                "_id" => 1,
+                "ordered_quantity" => 1
+            ]
+        ]);
+    $popular_ids = [];
+    foreach ($products as $p) {
+        $popular_ids[] = $p["_id"];
+    }
+
+    /*
     $orders = select_collection("orders")->find();
 
     // orders exist
@@ -90,7 +90,7 @@ function get_most_popular($limit) {
         $popular_ids = array_keys($popular);
     } else {
         $popular_ids = false;
-    }
+    }*/
 
     return $popular_ids;
 }
