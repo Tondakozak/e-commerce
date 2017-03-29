@@ -142,7 +142,7 @@ function set_default_staff_user() {
     if (!select_collection("users")->findOne(["role" => "staff"])) {
         $user_data["email"] = "staff@staff.com";
         $user_data["password"] = password_hash("staff", 1);
-        $user_data["staff"] = "staff";
+        $user_data["role"] = "staff";
 
         // insert to DB
         select_collection("users")->insertOne($user_data);
