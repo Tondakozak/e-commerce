@@ -23,12 +23,19 @@ function generate_address_form($data) {
                             <input name="name" class="form-control" type="text" id="name" value="$data[name]" required>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-4 col-lg-4">
-                            <label for="email">Email</label>
-                            <input name="email" class="form-control" type="email" id="email" value="$data[email]" required>
-                        </div>
+END;
+
+        echo '
+    
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                        <label for="email" '.(is_logged()?"style='display:none;'":"").'>Email</label>
+                        <input name="email" class="form-control" id="email" value="'.$data["email"].'" required type="'.(is_logged()?"hidden":"email").'">
                     </div>
+                </div>';
+
+
+     echo <<<END
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
                             <label for="tel">Tel. number</label>
