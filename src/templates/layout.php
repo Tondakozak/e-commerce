@@ -45,9 +45,9 @@ function generate_header($title, $in_cart = 0){
                 </ul>
 
                 <!-- search form -->
-                <form action="search.php" method="get" class="navbar-form navbar-right" role="search">
+                <form action="products.php" method="get" class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" name="name" class="form-control" required>
+                        <input type="text" name="search" class="form-control" required>
                     </div>
                     <button type="submit" class="btn btn-default">Search</button>
                 </form>

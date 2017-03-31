@@ -7,11 +7,11 @@
  */
 
 
-function generate_products_sidebar() {
+function generate_products_sidebar($data) {
     echo <<<END
 
         <!-- side bar -->
-        <div class="col-sm-3">
+        <div class="col-sm-3 left-sidebar-cover">
             <div class="left-sidebar">
 
                 <!--Sorting-->
@@ -19,152 +19,79 @@ function generate_products_sidebar() {
                 <h3>Sort by</h3>
                 <div class="radio">
                     <label>
-                        <input type="radio" name="sort">
+                        <input type="radio" name="sort" onchange="sort_obj.sortProducts('price', 0)">
                         Price: Lowest first
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio"name="sort">
+                        <input type="radio" name="sort" onchange="sort_obj.sortProducts('price', 1)">
                         Price: Highest first
                     </label>
                 </div>
                 <div class="radio">
                     <label>
-                        <input type="radio"name="sort">
+                        <input type="radio" name="sort" onchange="sort_obj.sortProducts('ordered_quantity', 1)">
                         Popularity
                     </label>
                 </div>
                 <hr>
-
-                <!--Men or Women-->
-
-                <h3>Gender</h3>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">
-                        Male
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="">
-                        Female
-                    </label>
-                </div>
-
-                <!-- Size -->
-
-                <h3>Size</h3>
-                <div class="brands-name">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            29 <span> (32) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            30 <span> (54) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            31 <span> (32) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            32 <span> (22) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            34 <span> (28) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            35 <span> (44) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            36 <span> (62) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            37 <span> (25) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            38 <span> (72) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            39 <span> (32) </span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" value="">
-                            40 <span> (112) </span>
-                        </label>
-                    </div>
-                </div>
-                <!--/size_products-->
-
-                <!-- Price -->
-
-                <h3>Price Range</h3>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="100">
-                        £ 50 to £ 100
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="200">
-                        £ 110 to £ 200
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="300">
-                        £ 210 to £ 300
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="400">
-                        £ 310 to £ 400
-                    </label>
-                </div>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="500">
-                        £ 410 to £ 500
-                    </label>
-                </div>
-            </div>
-        </div> <!-- end - side bar -->
-
-
+                <div id="sort-filter">
 END;
+
+    if (isset($data["gender"])) {
+        ksort($data["gender"]);
+        echo '<!--Men or Women-->
+
+                <h3>Gender</h3>';
+        echo "<div class='brands-name'>";
+        foreach ($data["gender"] as $key => $item) {
+            echo '<div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="" data-filter="gender" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            '.ucfirst($key).' <span> ('.$item.') </span>
+                        </label>
+                    </div>';
+        }
+    }
+    echo "</div>";
+
+    if (isset($data["brand"])) {
+        ksort($data["brand"]);
+        echo '<!--Brand-->
+
+                <h3>Brand Name</h3>';
+        echo "<div class='brands-name'>";
+        ksort($data["brand"]);
+        foreach ($data["brand"] as $key => $item) {
+            echo '<div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="" data-filter="brand" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            '.ucfirst($key).' <span> ('.$item.') </span>
+                        </label>
+                    </div>';
+        }
+    }
+    echo "</div>";
+
+    if (isset($data["price"])) {
+        ksort($data["price"]);
+        echo '<!--Price-->
+
+                <h3>Price Range</h3>';
+        echo "<div class='brands-name'>";
+        foreach ($data["price"] as $key => $item) {
+            echo '<div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="" data-filter="price" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            £'.($key-100).' - £'.$key.' <span> ('.$item.') </span>
+                        </label>
+                    </div>';
+        }
+    }
+    echo "</div></div>";
+
+    echo "</div></div>";
 
 }
 
@@ -172,16 +99,22 @@ END;
  * Generate HTML for ine item in products list
  * @param $data
  */
-function generate_product_item($data) {
+function generate_product_item($data, $sort = false) {
     $id = protect_output($data["_id"]);
     $name = protect_output($data["name"]);
     $brand = protect_output($data["brand"]);
     $photo = protect_output($data["photos"][0]);
     $price = protect_output($data["price"]);
     //set_script("cart.js");
+
+    if ($sort) {
+        $identificator = " id='product-$id'";
+    } else {
+        $identificator = "";
+    }
     echo <<<END
 
-        <div class="col-md-3  product-item">
+        <div class="col-md-3  product-item" $identificator data-product-id="$id">
             <article class="article-intro">
                 <a href="product.php?id=$id" class="product-item-cover">
                     <img class="img-responsive img-rounded" src="images/product-images/$photo" alt="$name">
@@ -292,4 +225,17 @@ function generate_recomendation($data) {
     }
 
     echo "</section>";
+}
+
+
+function generate_products_json($data) {
+    for ($i = 0; $i < count($data); $i++) {
+        if (!isset($data[$i]["ordered_quantity"])) {
+            $data[$i]["ordered_quantity"] = 1;
+        }
+    }
+    echo "<script>";
+    echo "sort_data = ".json_encode($data, JSON_UNESCAPED_UNICODE).";";
+    echo "var sort_obj = new SortProducts(sort_data);";
+    echo "</script>";
 }

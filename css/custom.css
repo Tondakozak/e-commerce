@@ -85,6 +85,9 @@ h1, h2, h3, h4, h5, h6 {
     border: solid 1px #eee;
     padding: 10px 20px;
 }
+.left-sidebar-cover {
+    z-index: 10;
+}
 .brands-name span{
     position: absolute;
     right: 0;
@@ -244,7 +247,9 @@ h1, h2, h3, h4, h5, h6 {
     margin: auto;
     line-height: 250px;
 }
-
+#products-cover {
+    position: relative;
+}
 .product-item {
     border-bottom: 1px solid rgb(240, 240, 240);
 }
@@ -273,10 +278,57 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+.product-showed {
+    max-width: 100%;
+}
+
+.product-showed-animate {
+    animation: product-show-animation 0.5s ease;
+}
 
 
+.product-hidden {
+    overflow: hidden;
+    max-width: 0;
+    padding: 0;
+}
+
+.product-hidden-animate {
+    animation: product-hide-animation 0.5s ease;
+    animation-fill-mode: forwards;
+
+    overflow: hidden;
+}
 
 
+@keyframes product-hide-animation {
+    0% {
+        padding: 0;
+        max-width: 100%;
+    }
+    25% {
+        max-width: 20%;
+        padding: 0;
+    }
+    100% {
+        max-width: 0%;
+        padding: 0;
+    }
+}
+
+@keyframes product-show-animation {
+    0% {
+        overflow: hidden;
+        max-width: 0%;
+    }
+    75% {
+        max-width: 25%;
+    }
+
+    100% {
+        max-width: 100%;
+    }
+}
 
 
 

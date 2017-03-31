@@ -22,26 +22,6 @@ function get_product($id) {
 }
 
 
-/*
- *
-
-
-db.products.insert(
-{
-    "name" : "Bota 2",
-    "description" : "saf Lorem ipsum dolor sit amet",
-    "photos" : ["2.jpg", "1.jpg"],
-    "quantity" : 100,
-    "brand" : "Baťa",
-    "category" : ["in-door", "fialova,"],
-    "gender" : "female",
-    "size" : 50,
-    "price" : 1119
-}
-)
-
-*/
-
 /**
  * Returns array of IDs of the most popular products
  * @param $limit
@@ -62,35 +42,6 @@ function get_most_popular($limit) {
     foreach ($products as $p) {
         $popular_ids[] = $p["_id"];
     }
-
-    /*
-    $orders = select_collection("orders")->find();
-
-    // orders exist
-    $popular = [];
-    if ($orders) {
-
-        // get products id and their quantity
-        $orders = mongo_to_array($orders);
-        foreach ($orders as $ord) {
-            foreach ($ord["items"] as $item) {
-                $product_id = (string)$item["product_id"];
-                if (!isset($popular[$product_id])) {
-                    $popular[$product_id] = 0;
-                }
-
-                $popular[$product_id] += 1;
-            }
-        }
-
-        // sort array
-        asort($popular);
-        $popular = array_reverse($popular);
-        $popular = array_slice($popular, 0, $limit); // leave only $limit number of items
-        $popular_ids = array_keys($popular);
-    } else {
-        $popular_ids = false;
-    }*/
 
     return $popular_ids;
 }
@@ -190,4 +141,17 @@ function get_featured_data($limit) {
     }
 
     return $data;
+}
+
+function get_sidebar_data($data) {
+    $result = [];
+    foreach ($data as  $d) {
+        $result["gender"][$d["gender"]] = (isset($result["gender"][$d["gender"]]))?$result["gender"][$d["gender"]]+1:1;
+        $result["size"][$d["size"]] = (isset($result["size"][$d["size"]]))?$result["size"][$d["size"]]+1:1;
+        $result["brand"][$d["brand"]] = (isset($result["brand"][$d["brand"]]))?$result["brand"][$d["brand"]]+1:1;
+        $price_range = ceil($d["price"]/100) * 100;
+        $result["price"][$price_range] = (isset($result["price"][$price_range]))?$result["price"][$price_range]+1:1;
+    }
+
+    return $result;
 }
