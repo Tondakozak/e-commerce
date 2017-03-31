@@ -19,9 +19,6 @@ function SortProducts(data) {
     this.products.filterCount = {};
 
     this.init();
-    this.fillFilter();
-    this.setVisibility();
-    this.showHideProducts(false);
 
 }
 
@@ -36,6 +33,10 @@ SortProducts.prototype.init = function () {
         this.products.data[i].sort = i;
         this.products.data[i].showed = true;
     }
+
+    this.fillFilter();
+    this.setVisibility();
+    this.showHideProducts(false);
 
 
 }
@@ -52,10 +53,11 @@ SortProducts.prototype.sortProducts = function (criterium, order) {
 }
 
 SortProducts.prototype.sortData = function(criterium, order) {
+
     for (var i = 0; i < this.products.data.length-1; i++) {
         var min = i;
         for (var k = i+1; k < this.products.data.length; k++) {
-            if (this.products.data[k][criterium]*1 < this.products.data[i][criterium]*1) {
+            if (this.products.data[k][criterium]*1 < this.products.data[min][criterium]*1) {
                 min = k;
             }
         }
@@ -65,12 +67,7 @@ SortProducts.prototype.sortData = function(criterium, order) {
     }
 
     if (order == 1) {
-        //this.products.data = this.products.data.reverse();
-        var tmp = this.products.data;
-        this.products.data = [];
-        for (var i = tmp.length-1; i >= 0; i--) {
-            this.products.data.push(tmp[i]);
-        }
+        this.products.data = this.products.data.reverse();
     }
 }
 

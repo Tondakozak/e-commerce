@@ -48,7 +48,7 @@ END;
         foreach ($data["gender"] as $key => $item) {
             echo '<div class="checkbox">
                         <label>
-                            <input type="checkbox" value="" data-filter="gender" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            <input type="checkbox" value="" data-filter="gender" data-filter-value="'.$key.'" onchange="sort_obj.filter()">
                             '.ucfirst($key).' <span> ('.$item.') </span>
                         </label>
                     </div>';
@@ -66,7 +66,7 @@ END;
         foreach ($data["brand"] as $key => $item) {
             echo '<div class="checkbox">
                         <label>
-                            <input type="checkbox" value="" data-filter="brand" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            <input type="checkbox" value="" data-filter="brand" data-filter-value="'.$key.'" onchange="sort_obj.filter()">
                             '.ucfirst($key).' <span> ('.$item.') </span>
                         </label>
                     </div>';
@@ -83,7 +83,7 @@ END;
         foreach ($data["price"] as $key => $item) {
             echo '<div class="checkbox">
                         <label>
-                            <input type="checkbox" value="" data-filter="price" data-filter-value="'.$key.'" checked onchange="sort_obj.filter()">
+                            <input type="checkbox" value="" data-filter="price" data-filter-value="'.$key.'" onchange="sort_obj.filter()">
                             £'.($key-100).' - £'.$key.' <span> ('.$item.') </span>
                         </label>
                     </div>';

@@ -113,11 +113,12 @@ function track_user($user_id, $product_id) {
 
         // add product categories to user tracking
         $category = $product_data["category"];
-        $category[] = $product_data["brand"];
-        $category[] = $product_data["gender"];
-        $category[] = "size-".$product_data["size"];
+        $category[] = strtolower($product_data["brand"]);
+        $category[] = strtolower($product_data["gender"]);
+        $category[] = strtolower("size-".$product_data["size"]);
 
         foreach ($category as $key => $value) {
+            $value = str_replace(".", "", $value);
             if (!isset($user_tracking[$value])) {
                 $user_tracking[$value] = 0;
             }
