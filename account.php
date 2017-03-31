@@ -3,7 +3,7 @@
 require "common.php";
 include "src/templates/account.php";
 
-page_for_customer();
+page_for_customer(); // for logged customer only
 
 $title = "My Account";
 

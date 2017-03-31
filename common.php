@@ -5,10 +5,9 @@ include "src/logic/database.php";
 include "src/logic/user.php";
 include 'src/templates/layout.php';
 
-
+// Mongo DB autoloading
 // mongoDB functions
 require("libraries/mongodb/src/functions.php");
-
 function autoloadFunction($class) {
     $namespace = explode("\\", $class);
 
@@ -190,10 +189,6 @@ function protect_output($data) {
 function protect_input($data) {
     return (string)trim($data);
 }
-
-
-
-
 
 
 

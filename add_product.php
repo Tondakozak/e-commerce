@@ -2,9 +2,8 @@
 //require
 require "common.php";
 
-
+// if the form was send
 if (isset($_POST["submit"])) {
-
 	// connect to mongodb server
 	$collection = (new MongoDB\Client)->ecomerce->products;
 

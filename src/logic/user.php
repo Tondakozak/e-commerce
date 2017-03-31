@@ -73,7 +73,7 @@ function get_user_address($id) {
 }
 
 /**
- * Saves user data
+ * Saves user data to DB
  * @param $data
  * @param $user_id
  */
@@ -97,6 +97,10 @@ function save_user_details($data, $user_id) {
     );
 }
 
+/** Store to DB information about product which the user visits
+ * @param $user_id
+ * @param $product_id
+ */
 function track_user($user_id, $product_id) {
     if (is_string($user_id)) {
         $user_id = protect_input($user_id);
@@ -117,8 +121,9 @@ function track_user($user_id, $product_id) {
         $category[] = strtolower($product_data["gender"]);
         $category[] = strtolower("size-".$product_data["size"]);
 
+        // increase quantity
         foreach ($category as $key => $value) {
-            $value = str_replace(".", "", $value);
+            $value = str_replace(".", "", $value); // delete dots
             if (!isset($user_tracking[$value])) {
                 $user_tracking[$value] = 0;
             }

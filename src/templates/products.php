@@ -6,10 +6,12 @@
  * Time: 15:47
  */
 
-
+/**
+ * Generate HTML for sidebar in products page
+ * @param $data
+ */
 function generate_products_sidebar($data) {
     echo <<<END
-
         <!-- side bar -->
         <div class="col-sm-3 left-sidebar-cover">
             <div class="left-sidebar">
@@ -39,6 +41,7 @@ function generate_products_sidebar($data) {
                 <div id="sort-filter">
 END;
 
+    // filtering by gender
     if (isset($data["gender"])) {
         ksort($data["gender"]);
         echo '<!--Men or Women-->
@@ -56,6 +59,7 @@ END;
     }
     echo "</div>";
 
+    // filtering by brand
     if (isset($data["brand"])) {
         ksort($data["brand"]);
         echo '<!--Brand-->
@@ -74,6 +78,7 @@ END;
     }
     echo "</div>";
 
+    // filtering by price
     if (isset($data["price"])) {
         ksort($data["price"]);
         echo '<!--Price-->
@@ -96,7 +101,7 @@ END;
 }
 
 /**
- * Generate HTML for ine item in products list
+ * Generate HTML for one item in products list
  * @param $data
  */
 function generate_product_item($data, $sort = false) {
@@ -140,6 +145,7 @@ END;
 
 
 /**
+ * Generate HMTL for page with product detail
  * @param $data
  *  $data = [
 "id" => $id,
@@ -163,24 +169,17 @@ function generate_product_detail($data) {
 
 
     echo <<<END
-
 <div class="row">
-
         <div class="col-sm-9 padding-right">
             <div class="product-details"><!--product-details-->
                 <div class="col-sm-5">
                     <div class="view-product">
                         <img src="images/product-images/{$data["photos"][0]}" alt="$data[name]">
-
                     </div>
-
-
                 </div>
                 <div class="col-sm-7">
                     <div class="product-information"><!--/product-information-->
-
                         <h2>$data[name]</h2>
-
                         <span>
 									<span>£$data[price]</span>
 									<label>Quantity:</label>
@@ -227,7 +226,9 @@ function generate_recomendation($data) {
     echo "</section>";
 }
 
-
+/** Generate JavaScript Scripts for sending data about products to the client
+ * @param $data
+ */
 function generate_products_json($data) {
     for ($i = 0; $i < count($data); $i++) {
         if (!isset($data[$i]["ordered_quantity"])) {
@@ -237,5 +238,6 @@ function generate_products_json($data) {
     echo "<script>";
     echo "sort_data = ".json_encode($data, JSON_UNESCAPED_UNICODE).";";
     echo "var sort_obj = new SortProducts(sort_data);";
+    echo "sort_obj.init();";
     echo "</script>";
 }

@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * Generate HTML for home page slider
+ * @param $data
+ */
 function generate_slider($data){
     $data = mongo_to_array($data);
-    $data = protect_output($data);
+    $data = protect_output($data); // XSS protection
 ?>
 
 <div class="jumbotron feature">
@@ -24,6 +28,7 @@ function generate_slider($data){
             <div class="carousel-inner" role="listbox">
 
                 <?php
+                // Slides
                 $slider_i = 0;
                 foreach ($data as $d) {
                     echo "<div class=\"item ".($slider_i == 0?" active":"")." \">
@@ -41,7 +46,6 @@ function generate_slider($data){
                 ?>
             </div>
 
-
             <a class="left carousel-control" href="#feature-carousel" role="button" data-slide="prev">
                 <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -55,22 +59,19 @@ function generate_slider($data){
     </div>
 </div>
 <?php
-
 }
 
+/**
+ * Generate HTML for featured products
+ */
 function generate_feature(){
 ?>
-
-
     <div class="container">
         <div class="row page-intro">
             <div class="col-lg-12">
                 <h1>Featured Products</h1>
             </div>
         </div>
-
-
-
 
     <div class="row">
         <?php

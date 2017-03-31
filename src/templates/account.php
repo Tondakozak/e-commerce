@@ -6,9 +6,11 @@
  * Time: 20:19
  */
 
+/**
+ * Generate HTML for default user's account page
+ */
 function generate_account_default() {
     echo <<<END
-
  <section id="cart_items">
             <div class="container">
 
@@ -32,8 +34,6 @@ function generate_account_default() {
 
                                 </div>
                             </td>
-
-
                         </tr>
 
                         <tr>
@@ -45,12 +45,8 @@ function generate_account_default() {
                                 <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
                                     <a href="order_history.php" class="btn btn-default regbutton">Order History</a>
                                 </div>
-
                             </td>
-
-
                         </tr>
-
                         </tbody>
                     </table>
                 </div>
@@ -58,5 +54,4 @@ function generate_account_default() {
         </section> <!--/#cart_items-->
 
 END;
-
 }

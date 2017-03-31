@@ -2,9 +2,16 @@
  * Created by Tonda on 17.03.2017.
  */
 
-
+/**
+ * Ajax function for adding product into cart
+ * @param event
+ * @param form_element
+ * @returns {boolean}
+ */
 function add_into_cart(event, form_element) {
     event.preventDefault();
+
+    // get data
     var product_id = form_element["product-id"].value;
     var product_quantity = form_element["product-quantity"].value;
 
@@ -29,43 +36,39 @@ function add_into_cart(event, form_element) {
             } else {
                 alert(response.error);
             }
-
-
-
         }
     };
 
     return false;
 }
 
-
+/**
+ * Show label that item was added to the cart
+ * @param form_element
+ */
 function show_label(form_element) {
     var label = form_element.getElementsByClassName("label")[0];
     label.className += " show-label";
-    setTimeout(function () {
+    setTimeout(function () { // hide label after 3 seconds
         label.className = "label label-success";
-    }, 3500);
+    }, 3000);
 }
 
+/**
+ * Update number of items in cart in the navigation
+ * @param num
+ */
 function update_items_in_cart(num) {
     document.getElementById("nav-cart-items").innerHTML = "("+num+")";
 
 }
 
-/*
-db.users.update({
-    "_id":"32fg0n6jsd10jdhpuu6uhp4nb1"
-    },{address: {line_1: "Buxton Roand 155",
-        line_2: "Bud 155",
-        town: "Londýn",
-        postcode: "nw9 5ha"
-    },
-    name: "tonda Kozák",
-    tel: "555555555"}
-)*/
-
-
+/**
+ * Manage Cart actions
+ */
 function manage_cart() {
+
+    // set events
     var inputs = document.getElementsByTagName("input");
     var timeouts = {};
     for (var i = 0; i < inputs.length; i++) {
@@ -79,28 +82,42 @@ function manage_cart() {
     }
 
 
+    /**
+     * Manage changing quantity of products
+     * @param inp
+     */
     function manage_change_quantity(inp) {
         var product_id = inp.getAttribute("data-product-id");
         if (typeof timeouts[product_id] != "undefined") {
             clearTimeout(timeouts[product_id]);
         }
-        timeouts[product_id] = setTimeout(function () {change_quantity(inp)}, 300);
+        timeouts[product_id] = setTimeout(function () {change_quantity(inp)}, 300); // wait 300 milisecond
     }
 
+    /**
+     * Ajax function for changing quantity of ordered products
+     * @param inp
+     */
     function change_quantity(inp) {
+        // get data
         var product_id = inp.getAttribute("data-product-id");
         var new_quantity = inp.value*1;
         var old_quantity = inp.getAttribute("data-product-value")*1;
         var quantity = new_quantity - old_quantity;
 
+
+        // deactive input
         document.getElementById("loader-"+(product_id)).style.visibility = "visible";
         inp.disabled = true;
 
+        // if the product quantity was changed to 0, set opacity
         if (new_quantity == 0) {
             document.getElementById("row-"+product_id).style.opacity = 0.3;
         } else {
             document.getElementById("row-"+product_id).style.opacity = 1;
         }
+
+
 
         var request = new XMLHttpRequest();
         request.open("POST", "add_to_cart.php?ajax=true", true);
@@ -116,7 +133,7 @@ function manage_cart() {
                     alert("error");
                 }
 
-                if (response.result) {
+                if (response.result) { // if success
                     update_items_in_cart(response.inCart);
                     update_prices(inp)
                 } else {
@@ -124,6 +141,7 @@ function manage_cart() {
                     inp.value = old_quantity;
                 }
 
+                // reactive input
                 document.getElementById("loader-"+(product_id)).style.visibility = "hidden";
                 inp.disabled = false;
 
@@ -132,6 +150,11 @@ function manage_cart() {
     }
 
 
+    /**
+     * Recount prices in the cart table
+     * @param inp
+     * @param new_quantity
+     */
     function update_prices(inp, new_quantity) {
         var product_id = inp.getAttribute("data-product-id");
         var new_quantity = inp.value*1;

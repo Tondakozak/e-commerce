@@ -9,7 +9,6 @@
 
 // include common files
 require "common.php";
-
 include "src/templates/products.php";
 include "src/logic/products.php";
 
@@ -33,6 +32,8 @@ if (!$product_details) {
 
 // track user
 track_user(get_user_id(), get_object_id($_GET["id"]));
+
+
 
 // generate HTML
 generate_header("Product", $in_cart_common);

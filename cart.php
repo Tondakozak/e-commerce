@@ -11,6 +11,7 @@ include_once "src/logic/products.php";
 
 $title = "Cart";
 
+// get data
 $cart_data = get_cart(get_user_id());
 $user_data = get_user_address(get_user_id());
 

@@ -1,8 +1,12 @@
 <?php
 
+/**
+ * Generate HTML for the first half of the common layout
+ * @param $title
+ * @param int $in_cart
+ */
 function generate_header($title, $in_cart = 0){
     $active = str_replace(" ", "_", strtolower($title));
-
 
 	?>
 	
@@ -41,7 +45,10 @@ function generate_header($title, $in_cart = 0){
             <!-- Navbar links -->
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <?php show_navigation($active, $in_cart); ?>
+                    <?php
+                        // generate navigation
+                        show_navigation($active, $in_cart);
+                    ?>
                 </ul>
 
                 <!-- search form -->
@@ -64,16 +71,16 @@ function generate_header($title, $in_cart = 0){
     <div class="container">
 
 <?php
-    show_messages();
+    show_messages(); // generate messages
 
 
 }
 
-
+/**
+ * Generate HTML for the bottom part of the common layout
+ */
 function generate_footer(){
 	?>
-	
-	
     <!-- footer -->
     <footer>
         <div class="footer-blurb"></div>
@@ -92,16 +99,19 @@ function generate_footer(){
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ie10-viewport-bug-workaround.js"></script>
 <script src="js/cart.js"></script>
-<?php
-add_scripts();
+    <?php
+    add_scripts(); // add specialized scripts
 ?>
 
 </body>
 </html>
 <?php
-
 }
 
+
+/**
+ * Generate HTML for success/error messages stored in Session
+ */
 function show_messages() {
     // if there are any messages
     if (isset($_SESSION["message"])) {
@@ -125,12 +135,18 @@ function show_messages() {
 
 }
 
+/** Generate HTML for navigation
+ * @param $active
+ * @param $in_cart
+ */
 function show_navigation($active, $in_cart) {
     if ($in_cart == 0) {
         $in_cart = "";
     } else {
         $in_cart = "($in_cart)";
     }
+
+    // Common part
     echo '
     <li'.(($active == "home")?" class='active'":"").'>
         <a href="/">Home</a>
@@ -145,6 +161,7 @@ function show_navigation($active, $in_cart) {
     <li><a></a></li>
     <li><a></a></li>';
 
+    // For not logged users
     if (!is_logged()) {
         echo ' <li'.(($active == "registration")?" class='active'":"").'>
                     <a href="registration.php">Registration</a>
@@ -158,6 +175,7 @@ function show_navigation($active, $in_cart) {
                 </li>';
     }
 
+    // For logged users
     if (is_customer()) {
         echo ' <li>
                     <a href="logout.php">Logout</a>
@@ -171,11 +189,11 @@ function show_navigation($active, $in_cart) {
                 </li>';
     }
 
+    // for logged staff
     if (is_staff()) {
         echo ' <li>
                     <a href="logout.php">Logout</a>
-                </li>
-            
+                </li>            
                 <li'.(($active == "manage_products")?" class='active'":"").'>
                     <a href="manage_products.php">Manage Products</a>
                 </li>

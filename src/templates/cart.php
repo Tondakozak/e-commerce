@@ -6,11 +6,12 @@
  * Time: 18:11
  */
 
-
+/** Generate HTML for address form
+ * @param $data
+ */
 function generate_address_form($data) {
-    $data = protect_output($data);
+    $data = protect_output($data); // XSS protection
     echo <<<END
-
 <!-- address -->
         <section id="do_action">
             <h3>Your details</h3>
@@ -25,8 +26,8 @@ function generate_address_form($data) {
                     </div>
 END;
 
-        echo '
-    
+    // if is logged, email input is hidden
+        echo '    
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-lg-4">
                         <label for="email" '.(is_logged()?"style='display:none;'":"").'>Email</label>
@@ -82,9 +83,12 @@ END;
         </section><!-- end - address -->
 
 END;
-
 }
 
+/**
+ * Generate HTML for cart table
+ * @param $data
+ */
 function generate_cart_table($data) {
 
     //if it is not empty
@@ -112,10 +116,6 @@ function generate_cart_table($data) {
 
     // sanitize output
     $cart_data = protect_output($cart_data);
-
-
-
-
 
 
     $cart_header = <<<END
@@ -176,7 +176,7 @@ END;
     }
 
 
-
+ // display HTML
     echo $cart_header;
     foreach ($cart_data as $item) {
         echo cart_row($item);

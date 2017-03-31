@@ -6,12 +6,15 @@
  * Time: 14:35
  */
 
+/** Returns data about product form DB
+ * @param $id
+ * @return array|bool
+ */
 function get_product($id) {
     // connect to mongodb server
-    $collection = (new MongoDB\Client)->ecomerce->products;
-    $data = $collection->findOne(["_id" => get_object_id($id)]);
+    $data = select_collection("products")->findOne(["_id" => get_object_id($id)]);
 
-    if (!$data) {
+    if (!$data) { // product doesn't exit
         return false;
     } else {
         $product_data = mongo_to_array($data);
@@ -143,6 +146,11 @@ function get_featured_data($limit) {
     return $data;
 }
 
+/**
+ * Generate data for sidebar on the product page
+ * @param $data
+ * @return array
+ */
 function get_sidebar_data($data) {
     $result = [];
     foreach ($data as  $d) {

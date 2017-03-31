@@ -6,11 +6,15 @@
  * Time: 18:05
  */
 
+/**
+ * Return cart data from the DB
+ * @param $user_id
+ * @return array|bool
+ */
 function get_cart($user_id) {
-    $collection = (new MongoDB\Client)->ecomerce->users;
+    $cart_db = select_collection("users")->findOne(["_id" => $user_id]);
 
-    $cart_db = $collection->findOne(["_id" => $user_id]);
-
+    // cart is empty
     if (!$cart_db || !isset($cart_db["cart"]) || count($cart_db["cart"]) == 0) {
         return false;
     } else {
@@ -24,6 +28,11 @@ function get_cart($user_id) {
     }
 }
 
+/**
+ * Update cart in DB
+ * @param $cart
+ * @param $user_id
+ */
 function update_cart_in_db($cart, $user_id) {
     $collection = select_collection("users");
 
@@ -37,14 +46,23 @@ function update_cart_in_db($cart, $user_id) {
     );
 }
 
-
+/**
+ * Decrease product quantity and increase ordered_quantity
+ * @param $product_id
+ * @param $quantity
+ * @return \MongoDB\UpdateResult
+ */
 function decrease_product_quantity($product_id, $quantity) {
     return select_collection("products")->updateOne(
         ["_id" => get_object_id($product_id)],
         ['$inc' => ["quantity" => (0-$quantity), "ordered_quantity" => $quantity]]);
 }
 
-
+/**
+ * Check form in the cart page
+ * @param $data
+ * @return bool
+ */
 function check_cart_form($data) {
     $error = false;
 

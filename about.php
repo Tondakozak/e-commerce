@@ -15,8 +15,6 @@ generate_header("About", $in_cart_common); ?>
                 website is a project that I've done based off my studies and I've only really done it to test my
                 knowledge and also sort of get me started for upcoming future projects.</p>
         </div>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 </div> <!-- end - main content -->
 <?php generate_footer(); ?>

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * Generate HTML for registration form
+ */
 function registration_form(){
     ?>
 

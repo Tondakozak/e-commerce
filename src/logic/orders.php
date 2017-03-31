@@ -14,9 +14,6 @@
  * @return \MongoDB\InsertOneResult
  */
 function save_order($user_data, $cart, $user_id) {
-
-    // delete
-
     $query = [
         "date" => time(),
         "items" => $cart,
@@ -64,7 +61,7 @@ function get_order_details($order_id) {
     if (!$order) {
         return false;
     } else {
-        $data["id"] = $order["_id"];
+
         $data["date"] = $order["date"];
         $data["status"] = $order["status"];
         $data["arriving"] = $order["arriving"];
@@ -77,6 +74,7 @@ function get_order_details($order_id) {
         $data["customer_details"]["address"]["town"] = $order["customer_details"]["address"]["town"];
         $data["customer_details"]["address"]["postcode"] = $order["customer_details"]["address"]["postcode"];
 
+        $data["id"] = $order["_id"];
         $data["total_price"] = 0;
         $data["total_quantity"] = 0;
 

@@ -6,9 +6,12 @@
  * Time: 19:32
  */
 
-
+/** Generate HTML for page with order detail
+ * @param $role
+ * @param $data
+ */
 function generate_order_detail($role, $data) {
-    $data = protect_output($data);
+    $data = protect_output($data); // XSS protection
     
     // status style
     $status_style = ($data["status"] == "processing"?" style='font-weight: bold; color: black'":"").
@@ -74,6 +77,7 @@ function generate_order_detail($role, $data) {
 
     }
 
+    // Address
     echo "
             <hr>
 
@@ -104,6 +108,7 @@ function generate_order_detail($role, $data) {
                         </thead>
                         <tbody>";
 
+    // Products
     foreach ($data["items"] as $item) {
         echo "
                         <tr>
@@ -123,7 +128,7 @@ function generate_order_detail($role, $data) {
     }
 
 
-
+    // Summary
     echo "
                         </tbody>
                         <tfoot>
@@ -140,15 +145,20 @@ function generate_order_detail($role, $data) {
 
 }
 
+/** Generate HTML for list of orders
+ * @param $data
+ */
 function generate_orders_list($data) {
     $data = protect_output($data);
 
+    // no orders
     if (!$data) {
         echo "<h3>No Orders</h3>";
         return;
     }
-    echo <<<END
 
+    // table header
+    echo <<<END
         <section id="cart_items">
             <div class="container">
 
@@ -167,6 +177,7 @@ function generate_orders_list($data) {
                         <tbody>
 END;
 
+    // Items
     foreach ($data as $item) {
         echo "
                         <tr".($item["status"] == "processing"?" style='font-weight: bold; color: black'":"").
@@ -181,6 +192,7 @@ END;
         ";
     }
 
+    // table footer
     echo "
                         </tbody>
                     </table>

@@ -1,14 +1,15 @@
 <?php
+
+/**
+ * Generate HTML for login form
+ */
 function login_form(){
 ?>
-	
 	<div class="row page-intro">
             <div class="col-lg-12  ">
                 <h1>Login</h1>
             </div>
         </div>
-				
-				
 				
 		<!-- Login form -->
         <div class="container-fluid">
@@ -34,6 +35,5 @@ function login_form(){
               </div>
             </form>
         </div>
-		
 		<?php
 }
