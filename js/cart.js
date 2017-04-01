@@ -33,6 +33,9 @@ function add_into_cart(event, form_element) {
             if (response.result) {
                 update_items_in_cart(response.inCart);
                 show_label(form_element);
+
+                // set quantity in input to one
+                form_element["product-quantity"].value = 1;
             } else {
                 alert(response.error);
             }

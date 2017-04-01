@@ -274,10 +274,10 @@ h1, h2, h3, h4, h5, h6 {
     50%   {opacity: 1}
     100% {opacity: 0}
 }
-.product-item .label {
+.product-item .label, .product-information .label {
     display: none;
 }
-.product-item .show-label {
+.product-item .show-label, .product-information .show-label {
     display: inline;
     animation: t-hide 4s linear;
 }

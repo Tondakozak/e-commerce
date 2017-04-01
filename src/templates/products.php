@@ -190,6 +190,7 @@ function generate_product_detail($data) {
                                             <i class="fa fa-shopping-cart"></i>
                                             Add to cart
                                         </button>
+                                        <div class='label label-success'>Added into Cart</div>
 									</form>
 								</span>
                         <p><b>Availability:</b> In Stock</p>
