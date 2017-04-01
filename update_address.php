@@ -31,7 +31,7 @@ generate_header($title, $in_cart_common);
 generate_page_title($title);
 
 
-generate_address_form($user_data);
+generate_address_form($user_data, "update");
 
 generate_recomendation(get_recommended_data(get_user_id()));
 generate_footer();

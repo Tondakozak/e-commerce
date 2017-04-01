@@ -9,8 +9,9 @@
 /** Generate HTML for address form
  * @param $data
  */
-function generate_address_form($data) {
+function generate_address_form($data, $page = "cart") {
     $data = protect_output($data); // XSS protection
+    $button_label = ($page == "cart")?"Checkout":"Update";
     echo <<<END
 <!-- address -->
         <section id="do_action">
@@ -74,7 +75,7 @@ END;
                     <hr>
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
-                            <button class="btn btn-default regbutton">Checkout</button>
+                            <button class="btn btn-default regbutton">$button_label</button>
                         </div>
 
                     </div>

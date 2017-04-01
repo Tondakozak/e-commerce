@@ -32,7 +32,7 @@ if (isset($_POST["email"])) {
 
 
 	if (!$error) { // if the fields are filled
-		$document = $collection->findOne(['email' => $dataArray['email']]);
+		$document = $collection->findOne(['$and' =>[['email' => $dataArray['email']], ["role" => ['$ne' => "guest"]]]]);
 		if ($document == null) { // if the email doesn't exist
 			set_error("Email Doesn't Exist");
 		
