@@ -15,63 +15,63 @@ function products_form(){
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="name">Name of Product</label>
-                    <input name="name" class="form-control" type="text" id="name">
+                    <input name="name" class="form-control" type="text" id="name" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="description">Description</label>
-                    <textarea name="description" class="form-control" rows="10" id="description"></textarea>
+                    <textarea name="description" class="form-control" rows="10" id="description" required></textarea>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="picture">Upload Picture of Product</label>
-                    <input type="file" name="imageToUpload" id="image">
+                    <input type="file" name="imageToUpload" id="image" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="brand">Brand Name</label>
-                    <input name="brand" class="form-control" type="text" id="brand">
+                    <input name="brand" class="form-control" type="text" id="brand" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="category">Category Name</label>
-                    <input name="category" class="form-control" type="text" id="category">
+                    <input name="category" class="form-control" type="text" id="category" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="gender">Gender</label>
-                    <input name="gender" class="form-control" type="text" id="gender">
+                    <input name="gender" class="form-control" type="text" id="gender" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="price">Price</label>
-                    <input name="price" class="form-control" type="number" id="price">
+                    <input name="price" class="form-control" type="number" id="price" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="quantity">Quantity</label>
-                    <input name="quantity" class="form-control" type="number" id="quantity">
+                    <input name="quantity" class="form-control" type="number" id="quantity" required>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4 col-sm-4 col-lg-4">
                     <label for="size">Size</label>
-                    <input name="size" class="form-control" type="number" id="size">
+                    <input name="size" class="form-control" type="number" id="size" required>
                 </div>
             </div>
 
