@@ -9,11 +9,7 @@ generate_header("About", $in_cart_common); ?>
         <div class="col-lg-122">
             <br>
             <h1>About US</h1>
-            <br>
-            <p>I am an undergraduate student at Middlesex University currently studying computer science, one day I'm
-                hoping to complete my degree to a higher standard and get involved in the field of computers. This
-                website is a project that I've done based off my studies and I've only really done it to test my
-                knowledge and also sort of get me started for upcoming future projects.</p>
+            <p>We are two <b>Tony</b> and <b>Rohan</b> who have worked together to develop this e-commerce website. On this website we are selling shoes for men’s and women’s. These are branded shoes and the brands of shoes that we will be selling will include, Nike, Timberland, Adidas and many more.</p>
         </div>
     </div>
 </div> <!-- end - main content -->
