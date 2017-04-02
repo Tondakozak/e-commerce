@@ -29,12 +29,6 @@ class GetObjectIdTest extends UnitTestCase {
         $this->assertTrue($object_from_object instanceof \MongoDB\BSON\ObjectID);
     }
 
-    function testGetObjectIdException() {
-        $id_string = "no-valid";
-        $object = get_object_id($id_string);
-
-        $this->expectException(new MongoDB\Driver\Exception\InvalidArgumentException);
-    }
-
+    
 
 }
