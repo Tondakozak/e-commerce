@@ -18,7 +18,7 @@ function generate_address_form($data, $page = "cart") {
             <h3>Your details</h3>
             <!-- Address -->
             <div class="container-fluid">
-                <form action="" method="post" class="register-form">
+                <form method="post" class="register-form">
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
                             <label for="name">Name</label>
@@ -157,7 +157,7 @@ END;
         return <<<END
                         <tr id="row-{$d["product_id"]}">
                             <td class="cart_product">
-                                <a href=""><img src="images\product-images/{$d["photo"]}" width="140" height="80" alt="{$d["product_name"]}"></a>
+                                <a href=""><img src="images/product-images/{$d["photo"]}" width="140" height="80" alt="{$d["product_name"]}"></a>
                             </td>
                             <td class="cart_description">
                                 <h4><a href="product.php?id={$d["product_id"]}">{$d["product_name"]}</a></h4>
