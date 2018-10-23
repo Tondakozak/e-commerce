@@ -1,0 +1,267 @@
+
+	
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Cart | E-Commerce</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- navigation -->
+    <nav class="navbar navbar-inverse" role="navigation">
+        <div class="container">
+
+            <!-- logo and hamburger menu button -->
+            <div class="navbar-header">
+                <!-- hamburger menu button -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <a class="navbar-brand" href="index.php"><img src="images/logo.jpg" alt="Logo"></a>
+            </div>
+
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    
+    <li>
+        <a href="/">Home</a>
+    </li>
+    <li>
+        <a href="about.php">About</a>
+    </li>
+
+    <li>
+        <a href="products.php">Products</a>
+    </li>
+    <li><a></a></li>
+    <li><a></a></li> <li>
+                    <a href="registration.php">Registration</a>
+                </li>
+            
+                <li>
+                    <a href="login.php">Login</a>
+                </li>
+                <li class='active'>
+                    <a href="cart.php">Cart <span id="nav-cart-items">(1)</span></a>
+                </li>                </ul>
+
+                <!-- search form -->
+                <form action="products.php" method="get" class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" name="search" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
+
+
+
+            </div>  <!-- end - navbar links -->
+        </div>
+    </nav> <!-- end - navigation -->
+
+
+
+    <!-- main content -->
+    <div class="container">
+
+
+        <div class="row page-intro">
+            <div class="col-lg-12  ">
+                <h1>Cart</h1>
+            </div>
+        </div>
+<!-- cart items -->
+        <section id="cart_items">
+            <div class="container">
+
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead>
+                        <tr class="cart_menu">
+                            <td class="image">Item</td>
+                            <td class="description">Quantity</td>
+                            <td class="price">Price</td>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                                                <tr id="row-58e143bfab19872670002ea1">
+                            <td class="cart_product">
+                                <a href=""><img src="images/product-images/jd_205517_a.jpg" width="140" height="80" alt="Timberland"></a>
+                            </td>
+                            <td class="cart_description">
+                                <h4><a href="product.php?id=58e143bfab19872670002ea1">Timberland</a></h4>
+                                <p>
+                                <input type="number" value="1" class="form-control" min="0" data-product-id="58e143bfab19872670002ea1" data-product="true" data-product-value="1" data-product-price="4">
+                                 <i class="loader" id="loader-58e143bfab19872670002ea1" style=""></i>
+                                 </p>
+                            </td>                           
+                            <td class="cart_price">
+                                <p>£4</p>
+                                <p><b id="price-58e143bfab19872670002ea1" data-price="4">£4</b></p>
+                            </td>
+
+                        </tr>
+                       
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td>Total: </td><td data-quantity="1" id="total-quantity">1</td><td data-price="4" id="total-price">£4</td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </section> <!--/#cart_items--><!-- address -->
+        <section id="do_action">
+            <h3>Your details</h3>
+            <!-- Address -->
+            <div class="container-fluid">
+                <form method="post" class="register-form">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="name">Name</label>
+                            <input name="name" class="form-control" type="text" id="name" value="" required>
+                        </div>
+                    </div>    
+                <div class="row">
+                    <div class="col-md-4 col-sm-4 col-lg-4">
+                        <label for="email" >Email</label>
+                        <input name="email" class="form-control" id="email" value="" required type="email">
+                    </div>
+                </div>                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="tel">Tel. number</label>
+                            <input name="tel" class="form-control" type="tel" id="tel" value="" required>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="address1">Address <small>line 1</small></label>
+                            <input name="address1" class="form-control" type="text" id="address1"  value="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="address2">Address <small>line 2</small></label>
+                            <input name="address2" class="form-control" type="text" id="address2"  value="">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="town">Town / City</label>
+                            <input name="town" class="form-control" type="text" id="town" value="" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-4 col-lg-4">
+                            <label for="postcode">Postcode</label>
+                            <input name="postcode" class="form-control" type="text" id="postcode"  value="" required>
+                        </div>
+                    </div>
+
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6">
+                            <button class="btn btn-default regbutton">Checkout</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </section><!-- end - address -->
+<section class="row">
+        <h3 class="text-center">Recommended for you</h3>
+        <div class="col-md-3  product-item"  data-product-id="58e143bfab19872670002ea1">
+            <article class="article-intro">
+                <a href="product.php?id=58e143bfab19872670002ea1" class="product-item-cover">
+                    <img class="img-responsive img-rounded" src="images/product-images/jd_205517_a.jpg" alt="Timberland">
+                </a>
+                <h3>
+					<a href="product.php?id=58e143bfab19872670002ea1">hello</a>
+                </h3>
+                    <p>Timberland</p>
+					<p>£4</p>
+					<form onsubmit="return add_into_cart(event, this);">
+					    <input type="hidden" name="product-quantity" value="1">
+					    <input type="hidden" name="product-id" value="58e143bfab19872670002ea1">					
+                        <input name="Add" value="Add to Cart" type="submit" class="btn btn-default">
+                        <div class='label label-success'>Added into Cart</div>
+                    </form>
+            </article>
+        </div>
+
+        <div class="col-md-3  product-item"  data-product-id="58e14867ab19872670002eaf">
+            <article class="article-intro">
+                <a href="product.php?id=58e14867ab19872670002eaf" class="product-item-cover">
+                    <img class="img-responsive img-rounded" src="images/product-images/default.jpg" alt="hi">
+                </a>
+                <h3>
+					<a href="product.php?id=58e14867ab19872670002eaf">aa</a>
+                </h3>
+                    <p>hi</p>
+					<p>£2</p>
+					<form onsubmit="return add_into_cart(event, this);">
+					    <input type="hidden" name="product-quantity" value="1">
+					    <input type="hidden" name="product-id" value="58e14867ab19872670002eaf">					
+                        <input name="Add" value="Add to Cart" type="submit" class="btn btn-default">
+                        <div class='label label-success'>Added into Cart</div>
+                    </form>
+            </article>
+        </div>
+
+        <div class="col-md-3  product-item"  data-product-id="58e143bfab19872670002ea1">
+            <article class="article-intro">
+                <a href="product.php?id=58e143bfab19872670002ea1" class="product-item-cover">
+                    <img class="img-responsive img-rounded" src="images/product-images/jd_205517_a.jpg" alt="Timberland">
+                </a>
+                <h3>
+					<a href="product.php?id=58e143bfab19872670002ea1">hello</a>
+                </h3>
+                    <p>Timberland</p>
+					<p>£4</p>
+					<form onsubmit="return add_into_cart(event, this);">
+					    <input type="hidden" name="product-quantity" value="1">
+					    <input type="hidden" name="product-id" value="58e143bfab19872670002ea1">					
+                        <input name="Add" value="Add to Cart" type="submit" class="btn btn-default">
+                        <div class='label label-success'>Added into Cart</div>
+                    </form>
+            </article>
+        </div>
+</section>    <!-- footer -->
+    <footer>
+        <div class="footer-blurb"></div>
+
+        <div class="small-print">
+            <div class="container">
+                <p><a href="tos.php">Terms &amp; Conditions</a> | <a href="privacy.php">Privacy Policy</a> | <a href="contact.php">Contact</a></p>
+                <p>Copyright &copy; MDX 2017 </p>
+            </div>
+        </div>
+    </footer>
+</div> <!-- end - main content -->
+
+<!-- JavaScript links -->
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="js/cart.js"></script>
+    
+</body>
+</html>
